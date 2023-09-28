@@ -1,0 +1,66 @@
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: #fff; }
+
+    p {
+    color: #b3b3b3;
+    font-weight: 300; }
+
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: "Roboto", sans-serif; }
+
+    a {
+    transition: .3s all ease; }
+    a:hover {
+        text-decoration: none !important; }
+
+    .content {
+    padding: 7rem 0; }
+
+    h2 {
+    font-size: 20px; }
+
+    .half, .half .container > .row {
+    height: 100vh; }
+
+    @media (max-width: 991.98px) {
+      .half .bg {
+        height: 1500px;
+        display: none;
+      }
+    }
+
+    .half .contents, .half .bg {
+      width: 50%;
+    }
+    @media (max-width: 1199.98px) {
+        .half .contents, .half .bg {
+          width: 100%;
+        }
+    }
+
+    .half .bg {
+      background-size: cover;
+      background-position-x: 20%;
+    }
+
+    .half a {
+      color: #888;
+      text-decoration: underline;
+    }
+
+    .half .btn {
+      height: 54px;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    .half .forgot-pass {
+      position: relative;
+      top: 2px;
+      font-size: 14px;
+    }
+
+
+
