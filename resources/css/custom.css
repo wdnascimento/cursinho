@@ -1,0 +1,64 @@
+#stepContent {
+    background-color: #ffffff;
+    margin: 40px auto;
+    padding: 40px;
+    box-shadow: 0px 6px 18px rgb(0 0 0 / 9%);
+    border-radius: 12px;
+}
+#stepContent .form-header {
+    gap: 5px;
+    text-align: center;
+    font-size: .9em;
+}
+#stepContent .form-header .stepIndicator {
+    position: relative;
+    flex: 1;
+    padding-bottom: 30px;
+}
+#stepContent .form-header .stepIndicator.active {
+    font-weight: 600;
+    cursor: pointer;
+}
+#stepContent .form-header .stepIndicator.finish {
+    font-weight: 600;
+    color: #009688;
+}
+#stepContent .form-header .stepIndicator::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    z-index: 9;
+    width: 30px;
+    height: 30px;
+    background-color: #d5efed;
+    border-radius: 50%;
+    border: 3px solid #ecf5f4;
+}
+#stepContent .form-header .stepIndicator.active::before {
+    background-color: blueviolet;
+    border: 3px solid #d5f9f6;
+}
+#stepContent .form-header .stepIndicator.finish::before {
+    background-color: #009688;
+    border: 3px solid #b7e1dd;
+}
+#stepContent .form-header .stepIndicator::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 13px;
+    width: 100%;
+    height: 3px;
+    background-color: #f3f3f3;
+}
+#stepContent .form-header .stepIndicator.active::after {
+    background-color: blueviolet;
+}
+#stepContent .form-header .stepIndicator.finish::after {
+    background-color: #009688;
+}
+#stepContent .form-header .stepIndicator:last-child:after {
+    display: none;
+}

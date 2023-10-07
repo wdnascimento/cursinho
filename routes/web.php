@@ -3,8 +3,9 @@
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Payment\PagSeguro;
+use App\Http\Controllers\Site\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +17,18 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => 'auth'],function(){
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('home', [HomeController::class, 'index'])->name('home');
+    Route::get('cadastro', [HomeController::class,'cadastro'])->name('cadastro');
+    Route::get('student', [StudentController::class,'create'])->name('student.form');
+    Route::post('student', [StudentController::class,'store'])->name('student.store');
+    Route::post('student.two', [StudentController::class,'storeTwo'])->name('student.store.two');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/cadastro', [HomeController::class, 'cadastro'])->name('cadastro');
-Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/pix', [PagSeguro::class, 'index'])->name('pix');
+    Route::get('/pix/{id}', [PagSeguro::class, 'pedido'])->name('pix');
+});
+
 
 // DEFAULT AUTH ROUTES
 Auth::routes();

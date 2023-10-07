@@ -3,18 +3,20 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Student;
+use App\Models\TableCode;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    private $student;
+    private $table_code;
+
+    function __construct(Student $students, TableCode $table_codes)
     {
-        $this->middleware('auth');
+        $this->student = $students;
+        $this->table_code = $table_codes;
     }
 
     /**
@@ -29,6 +31,6 @@ class HomeController extends Controller
 
     public function cadastro()
     {
-        return view('site.cadastro');
+        return redirect()->route('student.form');
     }
 }

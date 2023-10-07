@@ -80,6 +80,11 @@
                         </span>
                     @enderror
                 </div>
+                @if ($errors->has('message') )
+                    <div class="col-12 text-center text-danger pb-3">
+                        {{ $errors->first('message')}}
+                    </div>
+                @endif
 
                 <div class="col-12 text-right">
                     <p class="my-3">
@@ -92,15 +97,11 @@
 
                 {{-- Login field --}}
                 <div class="row">
-                    @if ($errors->has('message') )
-                        <div class="col-12 text-center pb-3">
-                            {{ $errors->first('message')}}
-                        </div>
-                    @endif
+
                     <div class="col-12">
                         <button type=submit class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
                             <span class="fas fa-sign-in-alt"></span>
-                            {{ __('adminlte::adminlte.sign_in') }}
+                            Entrar
                         </button>
                     </div>
                 </div>
@@ -109,26 +110,6 @@
                 {{-- Register button --}}
 
                 <a href="{{ route('register')}}" class="btn btn-secondary btn-lg active w-100" role="button" aria-pressed="true">Novo Cadastro</a>
-
-
-            </form>
-
-
-                {{--
-                <span class="d-block text-center my-4 text-muted">&mdash; Cadastre-se usando suas Redes Sociais &mdash;</span>
-
-                <div class="social-login">
-                    <a href="{{ url('/facebook/auth/redirect/register')}}" class="facebook btn d-flex justify-content-center align-items-center">
-                    <span class="icon-facebook mr-3"></span> Login com Facebook
-                    </a>
-                    <a href="{{ url('/linkedin/auth/redirect/register')}}" class="linkedin btn d-flex justify-content-center align-items-center">
-                    <span class="icon-linkedin mr-3"></span> Login com  LinkedIn
-                    </a>
-                    <a href="{{ url('/google/auth/redirect/register')}}" class="google btn d-flex justify-content-center align-items-center">
-                    <span class="icon-google mr-3"></span> Login com  Google
-                    </a>
-                </div>
-                --}}
 
             </form>
           </div>

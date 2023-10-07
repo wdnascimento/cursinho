@@ -1,5 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/plugins/jquery.mask.js": "/js/plugins/jquery.mask.js",
+    "/js/custom.js": "/js/custom.js",
+    "/js/mask.js": "/js/mask.js",
     "/css/app.css": "/css/app.css",
+    "/css/custom.css": "/css/custom.css",
     "/css/login.css": "/css/login.css"
 }

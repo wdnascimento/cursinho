@@ -11,7 +11,11 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix .js('resources/js/app.js', 'public/js')
+    .js('resources/js/plugins/jQuery-Mask-Plugin-master/dist/jquery.mask.js', 'public/js/plugins')
+    .js('resources/js/custom.js', 'public/js')
+    .js('resources/js/mask.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .css('resources/css/login.css', 'public/css')
+    .css('resources/css/custom.css', 'public/css')
     .sourceMaps();

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudensTable extends Migration
+class CreateTableCodesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,14 @@ class CreateStudensTable extends Migration
      */
     public function up()
     {
-        Schema::create('studens', function (Blueprint $table) {
+        Schema::create('table_codes', function (Blueprint $table) {
             $table->id();
+            $table->integer('pai')->default(0);
+            $table->integer('item')->default(0);
+            $table->string('valor');
+            $table->integer('flag')->default(0);
+            $table->string('descricao');
+
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ class CreateStudensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('studens');
+        Schema::dropIfExists('table_codes');
     }
 }

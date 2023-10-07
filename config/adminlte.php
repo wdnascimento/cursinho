@@ -174,6 +174,7 @@ return [
     'classes_auth_icon' => '',
     'classes_auth_btn' => 'btn-flat btn-primary',
 
+
     /*
     |--------------------------------------------------------------------------
     | Admin Panel Classes
@@ -260,6 +261,7 @@ return [
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
     'profile_url' => false,
+    'sign_in' => 'Entrar',
 
     /*
     |--------------------------------------------------------------------------
