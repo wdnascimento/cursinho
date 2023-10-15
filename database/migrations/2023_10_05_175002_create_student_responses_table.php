@@ -24,6 +24,8 @@ class CreateStudentResponsesTable extends Migration
             $table->foreign('student_id')->references('id')->on('students');
             $table->foreign('response_id')->references('id')->on('responses');
 
+            $table->unique(['student_id', 'response_id']);
+
             $table->timestamps();
         });
     }

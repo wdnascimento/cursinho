@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserSelectiveProcessesTable extends Migration
+class CreateFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateUserSelectiveProcessesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_selective_processes', function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('selective_processes_id')->constrained();
+            $table->string('title',150);
+            $table->text('url');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateUserSelectiveProcessesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_selective_processes');
+        Schema::dropIfExists('files');
     }
 }

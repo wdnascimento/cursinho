@@ -18,6 +18,7 @@ class CreateResponsesTable extends Migration
             $table->unsignedBigInteger('question_id');
             $table->text('text')->nullable(true);
             $table->integer('type')->comment('tb_codes - 10');
+            $table->string('class',200)->nullable(true);
             $table->integer('value')->default(0);
             $table->integer('required')->comment('tb_codes - 1');
 

@@ -12,11 +12,20 @@ class HomeController extends Controller
 {
     private $student;
     private $table_code;
+    private $step;
 
     function __construct(Student $students, TableCode $table_codes)
     {
         $this->student = $students;
         $this->table_code = $table_codes;
+
+        $this->middleware(function ($request, $next) {
+            $step = $this->student->getRegistrationStep(Auth::user()->id);
+            if($step != 99){
+                return redirect()->route('student.form');
+            }
+            return $next($request);
+        });
     }
 
     /**
@@ -31,6 +40,6 @@ class HomeController extends Controller
 
     public function cadastro()
     {
-        return redirect()->route('student.form');
+        return redirect()->route('student.form.edit');
     }
 }

@@ -62,3 +62,14 @@
 #stepContent .form-header .stepIndicator:last-child:after {
     display: none;
 }
+
+#stepContent .form-header .stepIndicator.active:hover::before {
+    background-color: blueviolet;
+}
+#stepContent .form-header .stepIndicator.active:hover::after {
+    background-color: blueviolet;
+}
+
+.cursor{
+    cursor: pointer;
+}

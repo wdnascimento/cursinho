@@ -15,15 +15,15 @@
 
         @switch($step)
             @case(1)
-                <span class="stepIndicator active"><h5>Informações Pessoais</h5></span>
-                <span class="stepIndicator"><h5>Formulário Socioeducacional</h5></span>
-                <span class="stepIndicator"><h5>Inscrição</h5></span>
+                <span class="stepIndicator cursor active" onclick="window.location.href='{{ route('student.form.edit',1) ; }}'"><h5>Informações Pessoais</h5></span>
+                <span class="stepIndicator cursor" onclick="window.location.href='{{ route('student.form.edit',2) ; }}'"><h5>Formulário Socioeducacional</h5></span>
+                <span class="stepIndicator cursor" onclick="window.location.href='{{ route('student.form.edit',3) ; }}'"><h5>Inscrição</h5></span>
             @break
 
             @case(2)
-                <span class="stepIndicator"><h5>Informações Pessoais</h5></span>
-                <span class="stepIndicator active"><h5>Formulário Socioeducacional</h5></span>
-                <span class="stepIndicator"><h5>Inscrição </h5></span>
+                <span class="stepIndicator cursor" onclick="window.location.href='{{ route('student.form.edit',1) ; }}'"><h5>Informações Pessoais</h5></span>
+                <span class="stepIndicator cursor active" onclick="window.location.href='{{ route('student.form.edit',1) ; }}'"><h5>Formulário Socioeducacional</h5></span>
+                <span class="stepIndicator cursor" onclick="window.location.href='{{ route('student.form.edit',3) ; }}'"><h5>Inscrição </h5></span>
             @break
 
             @case(3)
@@ -36,10 +36,10 @@
     </div>
     @switch($step)
         @case(1)
-            @include('site.student.forms.one')
+            @include('site.student.forms.oneedit')
         @break
         @case(2)
-            @include('site.student.forms.two')
+            @include('site.student.forms.twoedit')
             @break
         @case(3)
             @include('site.student.forms.three')

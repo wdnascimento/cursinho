@@ -4,7 +4,7 @@ namespace App\Http\Requests\Site\Student;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreStudentRequest extends FormRequest
+class StoreOneStudentRequest extends FormRequest
 {
     public function authorize()
     {
@@ -46,6 +46,7 @@ class StoreStudentRequest extends FormRequest
             'saturday_work' => 'required',
             'place_study' => 'required',
             'specialneed' => 'required',
+            'descriptionneed' => 'required_if:specialneed,1',
             'quota' => 'required'
         ];
 
@@ -90,6 +91,7 @@ class StoreStudentRequest extends FormRequest
             'saturday_work.required' =>'O campo :attribute é de preenchimento obrigatório!',
             'place_study.required' =>'O campo :attribute é de preenchimento obrigatório!',
             'specialneed.required' =>'O campo :attribute é de preenchimento obrigatório!',
+            'specialneed.required' =>'O campo :attribute é obrigatório quando PNE for SIM.!',
             'quota.required' =>'O campo :attribute é de preenchimento obrigatório!',
         ];
     }
@@ -130,6 +132,7 @@ class StoreStudentRequest extends FormRequest
             'saturday_work' => 'Trabalha Sábado',
             'place_study' => 'Onde quer Estudar',
             'specialneed' => 'PNE',
+            'descriptionneed' => 'Descrição',
             'quota' => 'Cotista',
         ];
     }

@@ -42,7 +42,7 @@ class PagSeguro extends Controller
                   ]
             }',
             'headers' => [
-                'Authorization' => '09FBF01FF51F41ABB052C150992A4532',
+                'Authorization' => 'Bearer B58C13A3616137C664AE1FA4AD9621CB',
                 'accept' => 'application/json',
                 'content-type' => 'application/json',
             ],

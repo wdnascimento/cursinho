@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTwoStudentRequest extends FormRequest
 {
-    private $questions;
+    private $question;
 
     public function __construct(Question $questions)
     {

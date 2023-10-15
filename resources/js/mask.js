@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import 'jquery-mask-plugin';
+import { split } from 'lodash';
 
 // Agora você pode usar o jQuery com o alias '$'
 $(document).ready(function() {
@@ -22,6 +23,11 @@ $(document).ready(function() {
     /// itens de pedido
     $('.cep').mask("00.000-000", { placeholder: "00.000-000" });
     $('.rg').mask("000000000000000");
+
+    $('.year').mask("0000");
+    $('.twodigits').mask("00");
+    $('.threedigits').mask("000");
+    $('.moneyReal').mask("#.##0,00", {reverse: true , placeholder: "R$ "});
 
     $('.cpf').mask('000.000.000-00', { reverse: true });
 
@@ -63,6 +69,38 @@ $(document).ready(function() {
 					}
 			});
 		}
+
+
+    });
+
+    // init responses
+    $("[name*='question'].mix").filter(function() {
+
+        if(this.checked){
+            var name = this.name.split('_');
+            if(this.value == 0){
+                $("[name*='response_"+name[1]+"']").css("display","none");
+                $("[name*='response_"+name[1]+"']").attr("disabled", true);
+                $("[name*='response_"+name[1]+"']").val("");
+            }else{
+                $("[name*='response_"+name[1]+"']").css("display","block");
+                $("[name*='response_"+name[1]+"']").attr("disabled", false);
+            }
+        }
+    });
+
+
+
+    $(".mix").on('change',function(){
+        var name = this.name.split('_');
+        if(this.value == 0){
+            $("[name*='response_"+name[1]+"']").css("display","none");
+            $("[name*='response_"+name[1]+"']").attr("disabled", true);
+            $("[name*='response_"+name[1]+"']").val("");
+        }else{
+            $("[name*='response_"+name[1]+"']").css("display","block");
+            $("[name*='response_"+name[1]+"']").attr("disabled", false);
+        }
     });
 });
 

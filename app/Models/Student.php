@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class Student extends Model
 {
@@ -19,17 +17,16 @@ class Student extends Model
             , 'specialneed', 'descriptionneed', 'quota', 'registrationstep'
         ];
 
-    public function getStep(){
+    public function getRegistrationStep($user_id){
         $step = $this   ->select('registrationstep')
-                        ->where('user_id',Auth::user()->id)
+                        ->where('user_id',$user_id)
                         ->first();
-        if($step != null){
-            $step = $step['registrationstep'] + 1;
-        }else{
-            $step = 1;
-        }
-        Session::put('step',$step);
-        return $step;
+        return ($step == null) ? 1 : $step['registrationstep'];
+    }
+
+    public function responses()
+    {
+        return $this->belongsToMany(Response::class, 'student_responses', 'student_id', 'response_id');
     }
 
 }
