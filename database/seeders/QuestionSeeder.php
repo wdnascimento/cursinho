@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Models\Question;
+use App\Models\Question;
 use Illuminate\Database\Seeder;
 
 class QuestionSeeder extends Seeder

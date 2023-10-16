@@ -32,7 +32,7 @@
                                 </x-form-group>
                                 @foreach ($item->responses as $options )
                                     @if($options->type == 2)
-                                        <x-form-input name="response_{{ $item->id }}_{{ $options->id }}" class="{{ $options->class }}"  placeholder="{{ $options->text }}"/>
+                                        <x-form-input name="response_{{ $item->id }}_{{ $options->id }}" class="mb-2 {{ $options->class }}"  placeholder="{{ $options->text }}"/>
                                     @endif
                                 @endforeach
                             </div>
@@ -44,7 +44,7 @@
                                     @foreach ($item->responses as $options )
                                         @if($options->type == 2)
                                         <div class="form-group col-12 col-md-6 py-1">
-                                            <x-form-input name="response_{{ $item->id }}_{{ $options->id }}" class="{{ $options->class }}" placeholder="{{ $options->text }}"/>
+                                            <x-form-input name="response_{{ $item->id }}_{{ $options->id }}" class="mb-2 {{ $options->class }}" placeholder="{{ $options->text }}"/>
                                         </div>
                                         @endif
                                     @endforeach
