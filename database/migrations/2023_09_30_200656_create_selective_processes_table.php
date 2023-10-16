@@ -22,6 +22,7 @@ class CreateSelectiveProcessesTable extends Migration
             $table->text('extramessage');
             $table->string('instructionurl');
             $table->string('terms');
+            $table->decimal('taxvalue',10,2);
             $table->date('paymentfinaldate');
 
             $table->timestamps();

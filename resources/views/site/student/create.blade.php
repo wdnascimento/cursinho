@@ -25,12 +25,12 @@
                 <span class="stepIndicator active"><h5>Formulário Socioeducacional</h5></span>
                 <span class="stepIndicator"><h5>Inscrição </h5></span>
             @break
-
+{{--
             @case(3)
                 <span class="stepIndicator cursor" onclick="window.location.href='{{ route('student.form.edit',1) ; }}'"><h5>Informações Pessoais</h5></span>
                 <span class="stepIndicator cursor" onclick="window.location.href='{{ route('student.form.edit',2) ; }}'"><h5>Formulário Socioeducacional</h5></span>
                 <span class="stepIndicator active cursor" onclick="window.location.href='{{ route('student.form.edit',3) ; }}'"><h5>Inscrição</h5></span>
-            @break
+            @break --}}
 
         @endswitch
     </div>
@@ -41,9 +41,9 @@
         @case(2)
             @include('site.student.forms.two')
             @break
-        @case(3)
+        {{-- @case(3)
             @include('site.student.forms.three')
-        @break
+        @break --}}
     @endswitch
 </div>
 </div>

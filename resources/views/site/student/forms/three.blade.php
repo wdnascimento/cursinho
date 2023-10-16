@@ -48,9 +48,23 @@
                         <div class="card-body">
                             <h6 class="w-100  text-center">
                                 INÍCIO DAS INSCRIÇÃO: {{  \Carbon\Carbon::parse($data['selective_processes']->startdate)->format('d/m/Y') }}
+                                <br>
+                                TÉRMINO DAS INSCRIÇÃO: {{  \Carbon\Carbon::parse($data['selective_processes']->enddate)->format('d/m/Y') }}
                             </h6>
                             <h6 class="w-100  text-center">
-                                TÉRMINO DAS INSCRIÇÃO: {{  \Carbon\Carbon::parse($data['selective_processes']->enddate)->format('d/m/Y') }}
+                                Para efetuar sua inscrição você precisa fazer um PIX para a chave
+                                <br>
+                                <br>
+                                <strong>
+                                CNPJ: 06.219.736/0001-31
+                                <br>
+                                Razão Social: FORMACAO SOLIDARIA
+                                </strong>
+                                <br>
+                                <br>
+                                <strong>
+                                    Valor: R$ {{  $data['selective_processes']->taxvalue  }}
+                                </strong>
                             </h6>
                         </div>
                         <div class="card-footer">
