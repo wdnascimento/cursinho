@@ -72,7 +72,7 @@
                     @endswitch
 
                 @endforeach
-                @if(isset($data['selective_processes']) && ($data['selective_processes']->studentSelectiveProcesses->isEmpty())))
+                @if(isset($data['selective_processes']) && ($data['selective_processes']->studentSelectiveProcesses->isEmpty()))
                 <div class="row py-3">
                     <div class="form-group d-flex justify-content-end">
                         <x-form-submit class="btn btn-success btn-lg d-flex ">Salvar</x-form-submit>
@@ -80,7 +80,7 @@
                 </div>
                 @else
                 <div class="row py-3">
-                    <div class="form-group d-flex justify-content-end">
+                    <div class="form-group d-flex text-center">
                         <div class="alert-danger">
                             Você não pode editar este cadastro por estar inscrito em um processo seletivo ativo.
                         </div>
