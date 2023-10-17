@@ -19,8 +19,8 @@ use App\Http\Controllers\Site\StudentController;
 |
 */
 Route::group(['middleware' => 'auth'],function(){
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('home', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'cadastro'])->name('home');
+    Route::get('home', [HomeController::class, 'cadastro'])->name('home');
     Route::get('cadastro', [HomeController::class,'cadastro'])->name('cadastro');
     Route::get('novocadastro', [StudentController::class,'create'])->name('student.form');
 

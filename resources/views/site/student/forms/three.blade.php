@@ -74,6 +74,9 @@
                             <h6 class="w-100  text-center">
                                 <strong>STATUS DO PAGAMENTO: </strong> {{  $item->payment }}
                             </h6>
+                            <h6 class="w-100  text-center">
+                                <a class="btn btn-sm btn-primary" href="{{ asset($data['selective_processes']->instructionurl) }}">LINK DO EDITAL</a>
+                            </h6>
                         </div>
 
 

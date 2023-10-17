@@ -209,6 +209,13 @@ class StudentController extends Controller
                 $data = $tmp;
                 $data['student_id'] = $this->student_id;
 
+                $selective_processes = new SelectiveProcess();
+                $data['selective_processes'] = $selective_processes
+                                    ->where('startdate','<=',\Carbon\Carbon::now())
+                                    ->Where('enddate','>=',\Carbon\Carbon::now())
+                                    ->with('studentSelectiveProcesses')
+                                    ->first();
+
                 return view('site.student.edit',compact('preload','step', 'data'));
             break;
             default:
