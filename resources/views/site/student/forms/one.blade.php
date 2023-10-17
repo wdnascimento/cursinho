@@ -1,7 +1,11 @@
 <div class="step">
     <div class="card-body ">
         <x-form :action="route('student.store')"  id="form-student" method="post">
-
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    Você precisa preencher todos os campos obrigatórios!
+                </div>
+            @endif
             {{-- id, user_id, social_name, rg, cpf, marital_status, nationality , color, birthdate--}}
             <div class="row">
                 <div class="col-12 py-3">
