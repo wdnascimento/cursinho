@@ -91,7 +91,7 @@ class StoreOneStudentUpdateRequest extends FormRequest
             'saturday_work.required' =>'O campo :attribute é de preenchimento obrigatório!',
             'place_study.required' =>'O campo :attribute é de preenchimento obrigatório!',
             'specialneed.required' =>'O campo :attribute é de preenchimento obrigatório!',
-            'specialneed.required' =>'O campo :attribute é obrigatório quando PNE for SIM.!',
+            'descriptionneed.required' =>'O campo obrigatório quando Necessita de Atendimento Especial.!',
             'quota.required' =>'O campo :attribute é de preenchimento obrigatório!',
         ];
     }
@@ -131,8 +131,8 @@ class StoreOneStudentUpdateRequest extends FormRequest
             'worker' => 'Trabalha?',
             'saturday_work' => 'Trabalha Sábado',
             'place_study' => 'Onde quer Estudar',
-            'specialneed' => 'PNE',
-            'descriptionneed' => 'Descrição',
+            'specialneed' => 'Necessita de Atendimento Especial',
+            'descriptionneed' => 'De Qual?',
             'quota' => 'Cotista',
         ];
     }

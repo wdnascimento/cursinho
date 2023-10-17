@@ -135,7 +135,7 @@
                     <x-form-select placeholder="--Selecione--" class="form-control" name="place_study" :options="$preload['place_study']" />
                 </div>
                 <div class="form-group col-12 col-md-6 col-lg-4">
-                    <label for="specialneed">Pessoa Com Deficiência?</label>
+                    <label for="specialneed">Necessita de atendimento especial?</label>
                     <x-form-select placeholder="--Selecione--" class="form-control" name="specialneed" :options="$preload['flag']" />
                 </div>
 

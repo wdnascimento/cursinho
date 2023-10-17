@@ -25,15 +25,15 @@
                 </div>
                 <div class="form-group col-12 col-md-6 col-lg-4">
                     <label for="marital_status">Estado Civil</label>
-                    <x-form-select  class="form-control"  name="marital_status" selected="{{ $data['marital_status'] }}"  :options="$preload['marital_status']" />
+                    <x-form-select  class="form-control"  name="marital_status" name="marital_status" :options="$preload['marital_status']"  :default="[$data['marital_status']]" />
                 </div>
                 <div class="form-group col-12 col-md-6 col-lg-4">
                     <label for="nationality">Nacionalidade</label>
-                    <x-form-select  class="form-control" name="nationality" selected="$data['nationality']"  :options="$preload['nationality']" />
+                    <x-form-select  class="form-control" name="nationality" :default="[$data['nationality']]"  :options="$preload['nationality']" />
                 </div>
                 <div class="form-group col-12 col-md-6 col-lg-4">
                     <label for="color">Cor / Raça</label>
-                    <x-form-select  class="form-control" name="color" :selected="$data['color']"  :options="$preload['color']" />
+                    <x-form-select  class="form-control" name="color" :default="[$data['color']]"  :options="$preload['color']" />
                 </div>
                 <div class="form-group col-12 col-md-6 col-lg-4">
                     <label for="birthdate">Data Nascimento</label>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group col-12 col-md-6 col-lg-4">
                     <label for="birthstate">Estado Nascimento</label>
-                    <x-form-select class="form-control" name="birthstate" :value="$data['birthstate']"  :options="$preload['birthstate']" />
+                    <x-form-select class="form-control" name="birthstate" :default="[$data['birthstate']]"  :options="$preload['birthstate']" />
                 </div>
                 <div class="form-group col-12 col-md-6 col-lg-4">
                     <label for="housephone">Tel. Residencial</label>
@@ -66,7 +66,7 @@
                 </div>
                 <div class="form-group col-12 col-md-6 col-lg-4">
                     <label for="sex">Sexo</label>
-                    <x-form-select  class="form-control" name="sex" :value="$data['sex']"  :options="$preload['sex']" />
+                    <x-form-select  class="form-control" name="sex" :default="[$data['sex']]"  :options="$preload['sex']" />
                 </div>
                 <div class="col-12 py-3">
                     <h3>Dados de Endereço</h3>
@@ -116,27 +116,27 @@
                 </div>
                 <div class="form-group col-12 col-md-6 col-lg-4">
                     <label for="worker">Você Trabalha?</label>
-                    <x-form-select class="form-control" name="worker" :value="$data['worker']"  :options="$preload['flag']" />
+                    <x-form-select class="form-control" name="worker" :default="[$data['worker']]"  :options="$preload['flag']" />
                 </div>
                 <div class="form-group col-12 col-md-6 col-lg-4">
                     <label for="time_work">Qual Horário?</label>
-                    <x-form-select class="form-control" name="time_work" :value="$data['time_work']"  :options="$preload['time_work']" />
+                    <x-form-select class="form-control" name="time_work" :default="[$data['time_work']]"  :options="$preload['time_work']" />
                 </div>
                 <div class="form-group col-12 col-md-6 col-lg-4">
                     <label for="saturday_work">Trabalha Sábado?</label>
-                    <x-form-select class="form-control" name="saturday_work" :value="$data['saturday_work']"  :options="$preload['flag']" />
+                    <x-form-select class="form-control" name="saturday_work" :default="[$data['saturday_work']]"  :options="$preload['flag']" />
                 </div>
                 <div class="form-group col-12 col-md-6 col-lg-4">
                     <label for="saturday_time">Qual Horário?</label>
-                    <x-form-select class="form-control" name="saturday_time" :value="$data['saturday_time']"  :options="$preload['time_work']" />
+                    <x-form-select class="form-control" name="saturday_time" :default="[$data['saturday_time']]"  :options="$preload['time_work']" />
                 </div>
                 <div class="form-group col-12 col-md-6 col-lg-4">
                     <label for="place_study">Onde pretende estudar?</label>
-                    <x-form-select class="form-control" name="place_study" :value="$data['place_study']"  :options="$preload['place_study']" />
+                    <x-form-select class="form-control" name="place_study" :default="[$data['place_study']]"  :options="$preload['place_study']" />
                 </div>
                 <div class="form-group col-12 col-md-6 col-lg-4">
-                    <label for="specialneed">Pessoa Com Deficiência?</label>
-                    <x-form-select class="form-control" name="specialneed" :value="$data['specialneed']"  :options="$preload['flag']" />
+                    <label for="specialneed">Necessita de atendimento especial?</label>
+                    <x-form-select class="form-control" name="specialneed" :default="[$data['specialneed']]"  :options="$preload['flag']" />
                 </div>
 
                 <div class="form-group col-12 col-md-6 col-lg-4">
@@ -145,7 +145,7 @@
                 </div>
                 <div class="form-group col-12 col-md-6 col-lg-4">
                     <label for="quota">Cotista?</label>
-                    <x-form-select class="form-control" name="quota" :value="$data['quota']"  :options="$preload['flag']" />
+                    <x-form-select class="form-control" name="quota" :default="[$data['quota']]"  :options="$preload['flag']" />
                 </div>
                 <div class="row py-3">
                     <div class="form-group d-flex justify-content-end">
