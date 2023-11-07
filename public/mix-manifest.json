@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/admin/app.js": "/js/admin/app.js",
     "/js/plugins/jquery.mask.js": "/js/plugins/jquery.mask.js",
     "/js/custom.js": "/js/custom.js",
     "/js/mask.js": "/js/mask.js",

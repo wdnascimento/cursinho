@@ -2,6 +2,7 @@
 @section('adminlte_css')
     @stack('css')
     @yield('css')
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @stop
 
 @php( $login_url = View::getSection('login_url') ?? config('adminlte.login_url', 'login') )
@@ -16,8 +17,6 @@
 @endif
 
 @section('auth_header', __('adminlte::adminlte.register_message'))
-
-<link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
 @section('body')
 

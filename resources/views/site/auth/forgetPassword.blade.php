@@ -12,8 +12,8 @@
     @stack('css')
     @yield('css')
 
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @stop
-<link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
 @section('body')
 

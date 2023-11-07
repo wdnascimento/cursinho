@@ -11,10 +11,8 @@
 @section('adminlte_css')
     @stack('css')
     @yield('css')
-
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @stop
-<link rel="stylesheet" href="{{ asset('css/login.css') }}">
-
 @section('body')
 
   <body >
@@ -82,7 +80,7 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>--}}
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
   </body>
   @stop
 

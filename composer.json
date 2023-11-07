@@ -14,8 +14,10 @@
         "guzzlehttp/guzzle": "^7.8",
         "jeroennoten/laravel-adminlte": "^3.9",
         "laravel/framework": "^8.0",
+        "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.4",
+        "laravelcollective/html": "^6.4",
         "laravellegends/pt-br-validator": "^10.0",
         "pagseguro/pagseguro-php-sdk": "^6.0",
         "protonemedia/laravel-form-components": "^3.6"

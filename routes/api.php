@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::group(['middleware' => ['auth:admin', 'throttle:2200,1']], function () {
+    Route::get('student-payment/{student_id}/process/{selective_process_id}', [StudentController::class,'studentPayment'])->name('api.student.student-payment');
+    Route::post('student-payment', [StudentController::class,'store'])->name('api.student.student-payment.store');
 });

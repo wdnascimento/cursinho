@@ -1,3 +1,76 @@
-#stepContent{background-color:#fff;border-radius:12px;box-shadow:0 6px 18px rgb(0 0 0/9%);margin:40px auto;padding:40px}#stepContent .form-header{font-size:.9em;gap:5px;text-align:center}#stepContent .form-header .stepIndicator{flex:1;padding-bottom:30px;position:relative}#stepContent .form-header .stepIndicator.active{cursor:pointer;font-weight:600}#stepContent .form-header .stepIndicator.finish{color:#009688;font-weight:600}#stepContent .form-header .stepIndicator:before{background-color:#d5efed;border:3px solid #ecf5f4;border-radius:50%;bottom:0;content:"";height:30px;left:50%;position:absolute;transform:translateX(-50%);width:30px;z-index:9}#stepContent .form-header .stepIndicator.active:before{background-color:#8a2be2;border:3px solid #d5f9f6}#stepContent .form-header .stepIndicator.finish:before{background-color:#009688;border:3px solid #b7e1dd}#stepContent .form-header .stepIndicator:after{background-color:#f3f3f3;bottom:13px;content:"";height:3px;left:50%;position:absolute;width:100%}#stepContent .form-header .stepIndicator.active:after{background-color:#8a2be2}#stepContent .form-header .stepIndicator.finish:after{background-color:#009688}#stepContent .form-header .stepIndicator:last-child:after{display:none}#stepContent .form-header .stepIndicator.active:hover:after,#stepContent .form-header .stepIndicator.active:hover:before{background-color:#8a2be2}.cursor{cursor:pointer}
+#stepContent {
+    background-color: #ffffff;
+    margin: 40px auto;
+    padding: 40px;
+    box-shadow: 0px 6px 18px rgb(0 0 0 / 9%);
+    border-radius: 12px;
+}
+#stepContent .form-header {
+    gap: 5px;
+    text-align: center;
+    font-size: .9em;
+}
+#stepContent .form-header .stepIndicator {
+    position: relative;
+    flex: 1;
+    padding-bottom: 30px;
+}
+#stepContent .form-header .stepIndicator.active {
+    font-weight: 600;
+    cursor: pointer;
+}
+#stepContent .form-header .stepIndicator.finish {
+    font-weight: 600;
+    color: #009688;
+}
+#stepContent .form-header .stepIndicator::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    z-index: 9;
+    width: 30px;
+    height: 30px;
+    background-color: #d5efed;
+    border-radius: 50%;
+    border: 3px solid #ecf5f4;
+}
+#stepContent .form-header .stepIndicator.active::before {
+    background-color: blueviolet;
+    border: 3px solid #d5f9f6;
+}
+#stepContent .form-header .stepIndicator.finish::before {
+    background-color: #009688;
+    border: 3px solid #b7e1dd;
+}
+#stepContent .form-header .stepIndicator::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 13px;
+    width: 100%;
+    height: 3px;
+    background-color: #f3f3f3;
+}
+#stepContent .form-header .stepIndicator.active::after {
+    background-color: blueviolet;
+}
+#stepContent .form-header .stepIndicator.finish::after {
+    background-color: #009688;
+}
+#stepContent .form-header .stepIndicator:last-child:after {
+    display: none;
+}
 
-/*# sourceMappingURL=custom.css.map*/
+#stepContent .form-header .stepIndicator.active:hover::before {
+    background-color: blueviolet;
+}
+#stepContent .form-header .stepIndicator.active:hover::after {
+    background-color: blueviolet;
+}
+
+.cursor{
+    cursor: pointer;
+}
+
