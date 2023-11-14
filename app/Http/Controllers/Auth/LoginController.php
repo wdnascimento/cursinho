@@ -42,7 +42,6 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-      dd('opa');
       if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
         // if successful, then redirect to their intended location
         return redirect()->intended(route("cadastro"));

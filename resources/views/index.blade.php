@@ -29,6 +29,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favicon-16x16.png'); }}">
     <link rel="manifest" href="{{ asset('assets/site.webmanifest'); }}">
 
+    <!-- Template Main CSS File -->
+    <link href="{{ asset('home/assets/css/style.css') }}" rel="stylesheet">
+
     <!-- Vendor CSS Files -->
     <link href="{{ asset('home/assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('home/assets/vendor/aos/aos.css') }}" rel="stylesheet">
@@ -38,8 +41,6 @@
     <link href="{{ asset('home/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('home/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
-    <link href="{{ asset('home/assets/css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <main >
@@ -50,7 +51,7 @@
               <div class="container d-flex align-items-center">
 
                 <h1 class="logo me-auto">
-                  <a href="index.html">
+                  <a href="{{ asset(''); }}">
                     <img src="{{ asset('home/assets/img/logo_horizontal.png'); }}" alt="" srcset="">
                   </a>
                 </h1>
@@ -151,7 +152,7 @@
                                   uma entrevista socioeconômica com o candidato.
                                 Os estudantes que têm interesse em participar do processo seletivo precisam ter: estudado
                                  em escola pública ou escola particular com bolsa integral; estar concluindo o
-                                 Ensino Médio em 2020 ou já ter finalizado; e a renda da família do candidato
+                                 Ensino Médio em 2024 ou já ter finalizado; e a renda da família do candidato
                                  deve ser de até um salário mínimo por pessoa.
                                 <br>
                                 <br>
@@ -190,7 +191,7 @@
                               </p>
                             </div>
                             <div class="col-lg-4 text-center order-1 order-lg-2">
-                              <img src="{{ asset('home/assets/img/course-details-tab-2.png'); }}" alt="" class="img-fluid">
+                              <img src="{{ asset('home/assets/img/course-details-tab-2.jpg'); }}" alt="" class="img-fluid">
                             </div>
                           </div>
                         </div>

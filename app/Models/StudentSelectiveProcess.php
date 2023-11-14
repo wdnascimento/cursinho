@@ -16,6 +16,11 @@ class StudentSelectiveProcess extends Model
         return $this->belongsTo(SelectiveProcess::class, 'selective_process_id', 'id');
     }
 
+    public function student()
+    {
+        return $this->belongsTo(Student::class, 'student_id', 'id');
+    }
+
 
     public function paymentLogs()
     {

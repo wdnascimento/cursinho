@@ -87,7 +87,9 @@ export default {
         }
     },
     methods: {
-
+        setPaymentStatus(value){
+            $('#payment_status_'+this.$data.form.student_id).html(value);
+        },
 
         closeModal(){
             this.$data.form.id      = '';
@@ -110,10 +112,9 @@ export default {
             this.$data.form.selective_process_id = selective_process_id;
             axios.get(this.root_url+"api/student-payment/"+student_id+"/process/"+selective_process_id).then((response) => {
                 if(response){
-                    console.log(response);
                     this.$data.form.id      = response.data.id;
-                    this.$data.form.payment = response.data.payment;
-                    this.$data.paymentLogs  = response.data.payment_logs
+                    this.$data.form.payment = '';
+                    this.$data.paymentLogs  = response.data.payment_logs;
                     $('#observationModal').modal('show');
                 }else{
                     this.$data.form.id      = '';
@@ -138,8 +139,8 @@ export default {
                         }
                     }).then((response) => {
                         this.$toast.info('Dados atualizados com sucesso.');
+                        this.setPaymentStatus(this.$data.form.payment);
                         this.closeModal();
-                        $('#form_filtro').submit();
                     })
                     .catch( (error) => {
                         if(error.response.status === 422){

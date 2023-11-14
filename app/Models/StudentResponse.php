@@ -11,5 +11,9 @@ class StudentResponse extends Model
     // id, student_id, response_id, textvalue, optvalue, created_at, updated_at
     protected $fillable =['student_id', 'response_id', 'textvalue', 'optvalue'];
 
+    public function student()
+    {
+        return $this->belongsTo(Student::class, 'student_id', 'id');
+    }
 
 }

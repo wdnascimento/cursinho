@@ -23,13 +23,14 @@
                     </div>
                 </div>
                 <div class="card-header">
+                    {{-- @dd($preload['selective_process_id']) --}}
                     @if($preload['notRegistred'] == 1)
-                    {{ Form::open(['route' => [$params['main_route'].'.notstudent',((isset($preload['turma'])) ? $preload['turma'] : '')],'method' =>'GET', 'id' => 'form_filtro']) }}
+                    {{ Form::open(['route' => [$params['main_route'].'.notstudent',((isset($preload['selective_process'])) ? $preload['selective_process'] : '')],'method' =>'GET', 'id' => 'form_filtro']) }}
                     @else
-                    {{ Form::open(['route' => [$params['main_route'].'.index',((isset($preload['turma'])) ? $preload['turma'] : '')],'method' =>'GET', 'id' => 'form_filtro']) }}
+                    {{ Form::open(['route' => [$params['main_route'].'.index',((isset($preload['selective_process'])) ? $preload['selective_process'] : '')],'method' =>'GET', 'id' => 'form_filtro']) }}
                     @endif
                     <div class="row">
-                        <div class="col-4 pt-3">
+                        <div class="col-3 pt-3">
                                 {{Form::select('selective_process_id',
                                     $preload['selective_process_id'],
                                     ((isset($preload['selective_process'])) ? $preload['selective_process'] : null),
@@ -41,8 +42,13 @@
                         <div class="col-3 pt-3">
                             {{ Form::text('cpf',(isset($searchFields['cpf']) ? $searchFields['cpf'] : ''), ['class' => 'form-control', 'placeholder' => 'CPF'])}}
                         </div>
-                        <div class="col-2 d-flex pt-3 ">
+                        <div class="col-1 d-flex pt-3 ">
                             {{ Form::submit('Buscar',['class'=>'btn btn-primary btn-md d-flex']) }}
+                        </div>
+                        <div class="col-2 d-flex pt-3 ">
+                            <button id="btn-export" class="btn btn-primary btn-md d-flex justify-content-center align-content-center" >
+                                <i  class="d-flex p-1 fas fa-file-excel"></i><span class="d-flex"> Exportar</span>
+                            </button>
                         </div>
                     </div>
                     {{ Form::close() }}
@@ -72,10 +78,8 @@
                                     <th>Cotista?</th>
                                     @if($preload['notRegistred'] == 0)
                                     <th>Pagamento</th>
-                                    <th>Mudar Status</th>
+                                    <th colspan="2"></th>
                                     @endif
-
-                                    <th><i class="fas fa-print"></i></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -92,26 +96,24 @@
                                         <td >{{ (($item['descriptionneed'] != '')? $item['descriptionneed'] :  '-') }}</td>
                                         <td >{{ $item['desc_quota']}}</td>
                                         @if($preload['notRegistred'] == 0)
-                                        <td >{{ $item['payment']}}</td>
+                                        <td id="payment_status_{{ $item['id'] }}" >{{ $item['payment']}}</td>
                                         <td>
                                             <button-payment-component student_id="{{ $item['id'] }}" selective_process_id="{{ $preload['selective_process'] }}" name="{{ $item['social_name'] }}" ></button-payment-component>
                                         </td>
-                                        @endif
-                                        <td >
-                                            {{-- <button-student-component
-                                                student_id="{{ $item['id'] }}">
-                                            </button-student-component> --}}
-                                        </td>
-
-                                        {{--
-
-                                        <td class="nowrap">
-                                            <a href="{{ route($params['main_route'].'.print', $item['id']) }}" target="_blank" class="btn btn-primary btn-xs"> <span class="fas fa-print px-1"> </span></a>
-                                        </td>
-                                        <td class="nowrap">
-                                            <a href="{{ route($params['main_route'].'.print.nodata', $item['id']) }}" target="_blank" class="btn btn-primary btn-xs"> <span class="fas fa-eye-slash px-1"> </span></a>
+                                        {{-- <td >
+                                            <button-student-component student_id="{{ $item['id'] }}" selective_process_id="{{ $preload['selective_process'] }}" name="{{ $item['social_name'] }}" ></button-student-component>
                                         </td> --}}
-
+                                        <td>
+                                            <a id="btn-print" href="{{ route($params['main_route'].'.print', [ 'student_id' => $item['id'], 'selective_process_id' => $preload['selective_process'] ] ) }}" data-toggle="tooltip" title="Imprimir">
+                                                <i class="fas fa-print"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a id="btn-makexls" href="{{ route($params['main_route'].'.makexls', [ 'student_id' => $item['id'], 'selective_process_id' => $preload['selective_process'] ] ) }}" data-toggle="tooltip" title="Salvar Excel">
+                                                <i class="fas fa-file-excel"></i>
+                                            </a>
+                                        </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -130,6 +132,7 @@
               </div>
 
           <modal-payment-component root_url="{{ asset('') }}" ></modal-payment-component>
+          {{-- <modal-student-component root_url="{{ asset('') }}" ></modal-student-component> --}}
     </div>
     </section>
     <style>
@@ -155,5 +158,14 @@
         $('#selective_process_id').on('change', function(){
             $('#form_filtro').submit();
         });
+
+        $('#btn-export').click(function() {
+            var action = $('#form_filtro').attr('action');
+            var tmp_action = action.replace("notstudent", "reportxls").replace("student","reportxls");
+            $('#form_filtro').attr('action',tmp_action);
+            $('#form_filtro').submit();
+        });
+
+
     </script>
 @stop

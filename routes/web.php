@@ -52,6 +52,9 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'],function(){
 
     //Students
     Route::get('student', [AdminStudentController::class,'index'])->name('admin.student.index');
+    Route::get('reportxls', [AdminStudentController::class,'reportxls'])->name('admin.student.reportxls');
+    Route::get('student/print/{student_id}/process/{selective_process_id}', [AdminStudentController::class,'print'])->name('admin.student.print');
+    Route::get('student/makexls/{student_id}/process/{selective_process_id}', [AdminStudentController::class,'makexls'])->name('admin.student.makexls');
     Route::get('notstudent', [AdminStudentController::class,'notRegistred'])->name('admin.student.notstudent');
 });
 
@@ -75,3 +78,6 @@ Route::group(['middleware' => 'auth'],function(){
 
     Route::post('selective_processes', [SelectiveProcessController::class,'store'])->name('selective_processes.store');
 });
+
+
+// routes/web.php

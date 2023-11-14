@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3",
+        "barryvdh/laravel-dompdf": "^2.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.8",
@@ -20,6 +21,7 @@
         "laravelcollective/html": "^6.4",
         "laravellegends/pt-br-validator": "^10.0",
         "pagseguro/pagseguro-php-sdk": "^6.0",
+        "phpoffice/phpspreadsheet": "^1.29",
         "protonemedia/laravel-form-components": "^3.6"
     },
     "require-dev": {
