@@ -16,8 +16,8 @@ class AddSelectiveProcessIdToStudentResponses extends Migration
         Schema::table('student_responses', function (Blueprint $table) {
             // $table->unsignedBigInteger('selective_process_id')->default(1)->after('response_id');
             // $table->foreign('selective_process_id')->references('id')->on('selective_processes');
-            $table->dropUnique(['student_id', 'response_id']);
-            $table->unique(['student_id', 'response_id','selective_process_id']);
+            // $table->dropUnique(['student_id', 'response_id']);
+            // $table->unique(['student_id', 'response_id','selective_process_id']);
 
         });
     }

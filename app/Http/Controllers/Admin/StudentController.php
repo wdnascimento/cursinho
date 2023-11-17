@@ -161,8 +161,10 @@ class StudentController extends Controller
                 $social_name = (isset($dataForm['social_name'])) ? $dataForm['social_name'] : '';
                 $cpf = (isset($dataForm['cpf'])) ? $dataForm['cpf'] : '';
                 $data = $this->student  ->select('students.*','ssp.payment')
-                                        ->join('student_selective_processes as ssp','ssp.student_id', 'students.id')
-                                        ->where('ssp.selective_process_id', $this->selective_process_id)
+                                        ->join('student_selective_processes as ssp', function($join){
+                                            $join->on('ssp.student_id', 'students.id');
+                                            $join->where('ssp.selective_process_id', $this->selective_process_id);
+                                        })
                                         ->where('social_name','LIKE','%'.$social_name.'%')
                                         ->where('cpf','LIKE','%'.$cpf.'%')
                                         ->paginate($this->paginate);
@@ -435,8 +437,10 @@ class StudentController extends Controller
                 $social_name = (isset($dataForm['social_name'])) ? $dataForm['social_name'] : '';
                 $cpf = (isset($dataForm['cpf'])) ? $dataForm['cpf'] : '';
                 $data = $this->student  ->select('students.*')
-                                        ->join('student_selective_processes as ssp','ssp.student_id', 'students.id')
-                                        ->where('ssp.selective_process_id', $this->selective_process_id)
+                                        ->join('student_selective_processes as ssp', function($join){
+                                            $join->on('ssp.student_id', 'students.id');
+                                            $join->where('ssp.selective_process_id', $this->selective_process_id);
+                                        })
                                         ->where('social_name','LIKE','%'.$social_name.'%')
                                         ->where('cpf','LIKE','%'.$cpf.'%')
                                         ->get();
