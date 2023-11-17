@@ -163,8 +163,8 @@
                                 <br>
                                 Os dados fornecidos não poderão ser alterados após a realização da inscrição.
                                 Caso não possua acesso à Internet, você pode realizar a inscrição pessoalmente
-                                 na secretaria do Cursinho Solidário, localizado na Avenida Vicente Machado n.° 198, Conjunto 101, Térreo,
-                                 Conjunto 94. O horário de atendimento acontece das 13h30 às 18h30,
+                                 na secretaria do Cursinho Solidário, localizado na Avenida Vicente Machado n.° 198, Conjunto 101, Térreo.
+                                 O horário de atendimento acontece das 13h30 às 18h30,
                                  não é necessário agendar um horário de atendimento.
                                 Após a realização da inscrição é necessário pagar a taxa de inscrição.
                                 A taxa de inscrição é de <strong> R$ 65,00 (sessenta e cinco reais) </strong>e deve ser efetuada a
