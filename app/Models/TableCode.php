@@ -35,7 +35,7 @@ class TableCode extends Model
 
     public function getDescricaoById($pai,$valor){
         if(is_int(intval($valor))){
-            $tmp = $this->where('pai',$pai)->where('item','<>',0)->where('valor',$valor)->select('descricao')->first()->toArray();
+            $tmp = $this->select('descricao')->where('pai',$pai)->where('item','<>',0)->where('valor',$valor)->first()->toArray();
             return  is_array($tmp) ? $tmp["descricao"] : '';
         }
         return '';
