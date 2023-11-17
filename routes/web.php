@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\Admin\SelectiveProcessController as AdminSelectiveProcessController;
 use App\Http\Controllers\Admin\StudentController as AdminStudentController;
 use App\Http\Controllers\Auth\Admin\AdminLoginController;
 use App\Http\Controllers\Site\HomeController;
@@ -36,7 +37,6 @@ Route::prefix('admin')->group(function() {
 }) ;
 
 Route::group(['prefix' => 'admin','middleware' => 'auth:admin'],function(){
-
     Route::get('/', [IndexController::class,'index'])->name('admin.dashboard');
     Route::get('admin', [AdminController::class,'index'])->name('admin.admin.index');
     Route::get('admin/create', [AdminController::class, 'create'])->name('admin.admin.create');
@@ -46,6 +46,12 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'],function(){
     Route::put('admin/update/{id}', [AdminController::class, 'update'])->name('admin.admin.update');
     Route::delete('admin/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.admin.destroy');
 
+    Route::get('selective_process', [AdminSelectiveProcessController::class,'index'])->name('admin.selective_process.index');
+    Route::get('selective_process/create', [AdminSelectiveProcessController::class, 'create'])->name('admin.selective_process.create');
+    Route::post('selective_process/store', [AdminSelectiveProcessController::class, 'store'])->name('admin.selective_process.store');
+    Route::get('selective_process/edit/{id}', [AdminSelectiveProcessController::class, 'edit'])->name('admin.selective_process.edit');
+    Route::put('selective_process/update/{id}', [AdminSelectiveProcessController::class, 'update'])->name('admin.selective_process.update');
+
     // Admin password
     Route::get('admin/show-password/{id}', [AdminController::class, 'showPassword'])->name('admin.admin.show-password');
     Route::put('admin/update-password/{id}', [AdminController::class, 'updatePassword'])->name('admin.admin.update-password');
@@ -53,6 +59,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'],function(){
     //Students
     Route::get('student', [AdminStudentController::class,'index'])->name('admin.student.index');
     Route::get('reportxls', [AdminStudentController::class,'reportxls'])->name('admin.student.reportxls');
+    Route::get('reportxls-notstudent', [AdminStudentController::class,'reportxlsnotstudent'])->name('admin.student.reportxls-notstudent');
     Route::get('student/print/{student_id}/process/{selective_process_id}', [AdminStudentController::class,'print'])->name('admin.student.print');
     Route::get('student/makexls/{student_id}/process/{selective_process_id}', [AdminStudentController::class,'makexls'])->name('admin.student.makexls');
     Route::get('notstudent', [AdminStudentController::class,'notRegistred'])->name('admin.student.notstudent');

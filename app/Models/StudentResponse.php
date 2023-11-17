@@ -9,7 +9,7 @@ class StudentResponse extends Model
 {
     use HasFactory;
     // id, student_id, response_id, textvalue, optvalue, created_at, updated_at
-    protected $fillable =['student_id', 'response_id', 'textvalue', 'optvalue'];
+    protected $fillable =['student_id', 'selective_process_id', 'response_id', 'textvalue', 'optvalue'];
 
     public function student()
     {

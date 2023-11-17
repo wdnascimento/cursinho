@@ -16,24 +16,37 @@
                 <h5>
                 </h5>
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item w-100 vh-50"  src="{{ asset($data['selective_processes']->instructionurl) }}"  allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item w-100 vh-100"  src="{{ asset($data['selective_processes']->instructionurl) }}"  allowfullscreen></iframe>
                 </div>
-                <x-form :action="route('selective_processes.store')" id="form-student" method="post">
-                    <x-form-input type="hidden" name="selective_process_id" :value="$data['selective_processes']->id"/>
-                    <x-form-group>
-                        <x-form-checkbox name="agreeterms" label="Li e concordo com os termos deste edital" />
-                    </x-form-group>
-                    <div class="row py-3">
-                        <div class="form-group d-flex justify-content-end">
-                            <x-form-submit class="btn btn-success btn-lg d-flex ">Realizar Inscrição</x-form-submit>
+                @if ($data['student_responses']->count())
+                    <x-form :action="route('selective_processes.store')" id="form-student" method="post">
+                        <x-form-input type="hidden" name="selective_process_id" :value="$data['selective_processes']->id"/>
+                        <x-form-group>
+                            <x-form-checkbox name="agreeterms" label="Li e concordo com os termos deste edital" />
+                        </x-form-group>
+                        <div class="row py-3">
+                            <div class="form-group d-flex justify-content-end">
+                                <x-form-submit class="btn btn-success btn-lg d-flex ">Realizar Inscrição</x-form-submit>
+                            </div>
+                        </div>
+                    </x-form>
+                    <style>
+                        .vh-50{
+                            height: 50vh;
+                        }
+                    </style>
+                @else
+                    <h5 class="w-100">
+                        <div class="alert alert-danger">
+                            Você não preencheu o cadastro para este processo.
+                        </div>
+                    </h5>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-end">
+                            <a href="{{ route('student.form.edit',2) }}" class="d-flex btn btn-primary">Realizar Cadastro</a>
                         </div>
                     </div>
-                </x-form>
-                <style>
-                    .vh-50{
-                        height: 50vh;
-                    }
-                </style>
+                @endif
             @else
             <div class="row">
                 <div class="col-12 col-md-6  pt-4">
@@ -88,7 +101,7 @@
         @else
             <h5>
                 <div class="alert alert-danger">
-                    Nenhum processo em Aberto no momento!!
+                    Nenhum processo em Aberto no momento!
                 </div>
             </h5>
         @endif

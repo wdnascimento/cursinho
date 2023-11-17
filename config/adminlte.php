@@ -304,6 +304,7 @@ return [
     'menu' => [
         // Navbar items:
 
+        ['header' => 'register'],
         [
             'text'        => 'Inscrições',
             'url'         => 'admin/student',
@@ -319,6 +320,16 @@ return [
             // 'label'       => 4,
             'label_color' => 'success',
         ],
+
+
+        ['header' => 'system_settings'],
+            [
+                'text'        => 'Processos',
+                'url'         => 'admin/selective_process',
+                'icon'        => 'fas fa-filter',
+                // 'label'       => 4,
+                'label_color' => 'success',
+            ],
 
         ['header' => 'account_settings'],
         [

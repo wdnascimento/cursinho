@@ -1,5 +1,8 @@
 <div class="step">
     <div class="card-body ">
+        @if(isset($preload['selective_process']))
+        <h3 class="w-100 text-center"><strong>Processo Seletivo: </strong>{{ $preload['selective_process']->title }} </h3>
+        <hr>
         <x-form :action="route('student.store.two')" id="form-student" method="post">
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -63,6 +66,11 @@
                 </div>
             </div>
         </x-form>
+        @else
+        <h3 class="w-100 alert alert-danger">
+            Nenhum Processo Seletivo aberto no momento.
+        </h3>
+        @endif
     </div>
 </div>
 

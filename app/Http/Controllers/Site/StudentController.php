@@ -16,11 +16,12 @@ use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
-    private $student, $table_code, $student_id, $registrationstep;
+    private $student, $table_code, $student_id, $registrationstep, $selective_process;
 
-    function __construct(Student $students, TableCode $table_codes)
+    function __construct(Student $students, TableCode $table_codes, SelectiveProcess $selective_processes)
     {
         $this->student = $students;
+        $this->selective_process = $selective_processes;
         $this->table_code = $table_codes;
         $this->middleware(function ($request, $next) {
             $tmp = $this->student->select('id','registrationstep')->where('user_id',Auth::user()->id)->first();
@@ -57,7 +58,9 @@ class StudentController extends Controller
                 break;
             case 2:
                 $questions = new Question();
-                $preload['questions'] = $questions->with('responses')->get();
+                if($preload['selective_process'] = $this->selective_process->current()){
+                    $preload['questions'] = $questions->with('responses')->get();
+                }
                 return view('site.student.create',compact('step','preload'));
             break;
             default:
@@ -88,8 +91,9 @@ class StudentController extends Controller
         $question = new Question();
         $student = $this->student->select('id')->where('user_id', Auth::user()->id)->first();
 
-        if($student){
+        if($student && $this->selective_process->current()){
             $studentResponse = new StudentResponse();
+            $selective_process_id = $this->selective_process->current()->id;
 
             DB::beginTransaction();
 
@@ -97,10 +101,9 @@ class StudentController extends Controller
             foreach($data as $q){
                 switch($q->type){
                     case 1 :
-                        // @dd($dataForm[''])
-                        // id, student_id, response_id, textvalue, optvalue
                         $tmp_data = [
                             'student_id' => $student['id'],
+                            'selective_process_id' => $selective_process_id,
                             'response_id' => $q->id,
                             'optvalue' => $dataForm['question_'.$q->id],
                         ];
@@ -113,6 +116,7 @@ class StudentController extends Controller
                     case 2 :
                         $tmp_data = [
                             'student_id' => $student['id'],
+                            'selective_process_id' => $selective_process_id,
                             'response_id' => $q->id,
                             'optvalue' => $dataForm['question_'.$q->id],
                         ];
@@ -136,6 +140,7 @@ class StudentController extends Controller
                     case 3 :
                         $tmp_data = [
                             'student_id' => $student['id'],
+                            'selective_process_id' => $selective_process_id,
                             'response_id' => $q->id,
                             'optvalue' => null,
                         ];
@@ -169,12 +174,6 @@ class StudentController extends Controller
         return redirect()->route('student.form.edit',3);
     }
 
-
-    public function show(Student $student)
-    {
-        //
-    }
-
     public function edit(Student $student, $step = 1)
     {
         if($this->student_id == null || $this->registrationstep != 99){
@@ -197,34 +196,48 @@ class StudentController extends Controller
                 return view('site.student.edit',compact('preload','step', 'data'));
             break;
             case 2:
-                $questions = new Question();
-                $preload['questions'] = $questions->with('responses')->get();
-                $responses = new StudentResponse();
-                // id, student_id, response_id, textvalue, optvalue, created_at, updated_at
-                $data = $responses->select('response_id','textvalue','optvalue')->where('student_id',$this->student_id)->get();
-                foreach($data as $i => $v){
-                    $tmp[$v['response_id']]['textvalue']= $v['textvalue'];
-                    $tmp[$v['response_id']]['optvalue']= $v['optvalue'];
+
+                if($preload['selective_process'] = $this->selective_process->current()){
+
+                    $questions = new Question();
+                    $preload['questions'] = $questions->with('responses')->get();
+
+                    $responses = new StudentResponse();
+                    // id, student_id, response_id, textvalue, optvalue, created_at, updated_at
+                    $data = $responses  ->select('response_id','textvalue','optvalue')
+                                        ->where('student_id',$this->student_id)
+                                        ->where('selective_process_id',$preload['selective_process']->id)
+                                        ->get();
+
+                    if($data->count()){
+                        $tmp = [];
+                        foreach($data as $i => $v){
+                            $tmp[$v['response_id']]['textvalue']= $v['textvalue'];
+                            $tmp[$v['response_id']]['optvalue']= $v['optvalue'];
+                        }
+                        $data = $tmp;
+                        $data['student_id'] = $this->student_id;
+                    }else{
+                        $data =null;
+                    }
+                    $data['selective_processes'] = $this->selective_process->with('studentSelectiveProcesses')->where('id',$preload['selective_process']->id)->first();
+                    return view('site.student.edit',compact('preload','step', 'data'));
+                }else{
+                    return view('site.student.edit',compact('preload','step'));
                 }
-                $data = $tmp;
-                $data['student_id'] = $this->student_id;
-
-                $selective_processes = new SelectiveProcess();
-                $data['selective_processes'] = $selective_processes
-                                    ->where('startdate','<=',\Carbon\Carbon::now())
-                                    ->Where('enddate','>=',\Carbon\Carbon::now())
-                                    ->with('studentSelectiveProcesses')
-                                    ->first();
-
-                return view('site.student.edit',compact('preload','step', 'data'));
+                break;
             break;
             default:
-                $selective_processes = new SelectiveProcess();
-                $data['selective_processes'] = $selective_processes
-                                    ->where('startdate','<=',\Carbon\Carbon::now())
-                                    ->Where('enddate','>=',\Carbon\Carbon::now())
-                                    ->with('studentSelectiveProcesses')
-                                    ->first();
+                if($preload['selective_process'] = $this->selective_process->current()){
+                    $responses = new StudentResponse();
+                    $data['student_responses'] = $responses  ->select('response_id','textvalue','optvalue')
+                                        ->where('student_id',$this->student_id)
+                                        ->where('selective_process_id',$preload['selective_process']->id)
+                                        ->get();
+                    $data['selective_processes'] = $this->selective_process->with('studentSelectiveProcesses')->where('id',$preload['selective_process']->id)->first();
+                }else{
+                    $data['selective_processes'] = null;
+                }
                 return view('site.student.edit',compact('step','data'));
             break;
         }

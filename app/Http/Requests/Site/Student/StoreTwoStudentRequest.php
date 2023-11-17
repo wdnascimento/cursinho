@@ -14,7 +14,6 @@ class StoreTwoStudentRequest extends FormRequest
         $this->question = $questions;
     }
 
-
     public function authorize()
     {
         return true;
@@ -45,7 +44,6 @@ class StoreTwoStudentRequest extends FormRequest
 
                 break;
             }
-
         }
         return $validade;
     }
@@ -72,12 +70,9 @@ class StoreTwoStudentRequest extends FormRequest
                         if($r->required == 1 )
                             $validade['response_'.$q['id'].'_'.$r['id'].'.required'] = 'O '.$r->text.' é de preenchimento obrigatório!' ;
                     }
-
                 break;
             }
-
         }
-
         return $validade;
     }
 

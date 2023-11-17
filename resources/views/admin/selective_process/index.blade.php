@@ -23,7 +23,7 @@
 
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body table-responsive p-0">
+                <div class="card-body table-responsive p-2">
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul class="m-0 ">
@@ -34,26 +34,29 @@
                         </div>
                     @endif
                     @if(isset($data) && count($data))
-                        <table class="table table-hover">
+                        <table class="table table-striped table-hover">
                             <thead>
                             <tr>
+                                {{-- // id, year, title, startdate, enddate, extramessage, instructionurl, terms, paymentfinaldate, taxvalue --}}
+                                <th>Ano</th>
                                 <th>Título</th>
-                                <th>Data/Hora</th>
-                                <th>Cadastrastrado por</th>
-                                <th>Importado</th>
-                                <th>Operação</th>
+                                <th>Início</th>
+                                <th>Final</th>
+                                <th>Limite Pagamento</th>
+                                <th>Operações</th>
                             </tr>
                             </thead>
                             <tbody>
                                 <!-- id, titulo, data_hora, importado, usuario, deleted_at, created_at, updated_at -->
                                 @foreach ($data as $item)
                                 <tr>
-                                    <td>{{ $item->titulo}}</td>
-                                    <td>{{ $item->data_hora }}</td>
-                                    <td>{{ $item->usuario }}</td>
-                                    <td>{{ $item->desc_importado }}</td>
+                                    <td>{{ $item->year}}</td>
+                                    <td>{{ $item->title }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($item->startdate)->format('d/m/Y') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($item->enddate)->format('d/m/Y') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($item->paymentfinaldate)->format('d/m/Y') }}</td>
                                     <td>
-                                        <a href="{{ route($params['main_route'].'.import', $item->id) }}" class="btn btn-info btn-xs"><span class="fas fa-edit"></span> Importar</a>
+                                        <a href="{{ route($params['main_route'].'.edit', $item->id) }}" class="btn btn-info btn-xs"><span class="fas fa-edit"></span> Editar</a>
                                     </td>
                                 </tr>
                                 @endforeach

@@ -6,6 +6,8 @@ return [
     'blog'                          => 'Blog',
     'pages'                         => 'Página',
     'account_settings'              => 'Configurações da Conta',
+    'system_settings'               => 'Configurações do Sistema',
+    'register'                      => 'Inscrições',
     'profile'                       => 'Perfil',
     'change_password'               => 'Mudar Senha',
     'multilevel'                    => 'Multinível',

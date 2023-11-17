@@ -20,7 +20,7 @@ class IndexController extends Controller
 
     public function index()
     {
-        $selective_process_id = $this->selective_process->activeSelectiveProcess();
+        $selective_process_id = $this->selective_process->current();
 
         if($selective_process_id){
             $data['open_selective_process'] = 1;

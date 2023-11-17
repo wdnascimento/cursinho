@@ -3,44 +3,49 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\SelectiveProcess\SelectiveProcessInsertRequest;
+use App\Http\Requests\Admin\SelectiveProcess\SelectiveProcessUpdateRequest;
 use App\Models\SelectiveProcess;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SelectiveProcessController extends Controller
 {
-    private $preload, $params, $data, $selective_processes;
+    private $params, $data, $selective_process;
     public function __construct(SelectiveProcess $selective_processes)
     {
 
         $this->selective_process = $selective_processes;
         // Default values
-        $this->params['titulo']='Arquivo Sigep';
-        $this->params['main_route']='admin.arquivo_sigep';
+        $this->params['titulo']='Processo Seletivo';
+        $this->params['main_route']='admin.selective_process';
 
     }
 
     public function index()
     {
         // PARAMS DEFAULT
-        $this->params['subtitulo']='Arquivo Sigep Cadastrados';
+        $this->params['subtitulo']='Processos Seletivo Cadastrados';
         $this->params['arvore'][0] = [
-                    'url' => 'admin/arquivo_sigep',
-                    'titulo' => 'Arquivo Sigep'
+                    'url' => 'admin/selective_process',
+                    'titulo' => 'Processo Seletivo'
         ];
 
+        // id, year, title, startdate, enddate, extramessage, instructionurl, terms, paymentfinaldate, taxvalue
+
         $params = $this->params;
-        $data = $this->arquivo_sigep->orderBy('data_hora','desc')->limit(15)->get();
-        return view('admin.arquivo_sigep.index',compact('params','data'));
+        $data = $this->selective_process->orderBy('year','desc')->get();
+        return view('admin.selective_process.index',compact('params','data'));
     }
 
     public function create()
     {
         // PARAMS DEFAULT
-        $this->params['subtitulo']='Cadastrar Arquivo Sigep';
+        $this->params['subtitulo']='Cadastrar';
         $this->params['arvore']=[
            [
-               'url' => 'admin/arquivo_sigep',
-               'titulo' => 'Arquivo Sigep'
+               'url' => 'admin/selective_process',
+               'titulo' => 'Processo Seletivo'
            ],
            [
                'url' => '',
@@ -49,161 +54,75 @@ class SelectiveProcessController extends Controller
        $params = $this->params;
 
        $preload = null;
-       return view('admin.arquivo_sigep.create',compact('params','preload'));
+       return view('admin.selective_process.create',compact('params','preload'));
     }
 
-    public function store(ArquivoSigepRequest $request)
+    public function store(SelectiveProcessInsertRequest $request)
     {
 
-        if($request->file()) {
-            $fileName = date('YmdHis').'.'.$request->file->getClientOriginalExtension();
-            $filePath = $request->file->storeAs('uploads', $fileName,'public');
+        if($request->hasFile('instructionurl')) {
+            $fileName = date('YmdHis').'.'.$request->file('instructionurl')->getClientOriginalExtension();
+            $filePath = $request->file('instructionurl')->storeAs('uploads', $fileName,'public');
 
-            //id, titulo, data_hora, importado, usuario,
-            $data['titulo'] = $filePath;
-            $data['data_hora'] = \Carbon\Carbon::now()->setTimezone('America/Sao_Paulo');
-            $data['importado'] = 0;
-            $data['usuario'] =Auth()->user()->email;
+            $dataForm = $request->all();
+            $dataForm['instructionurl'] = $filePath;
 
-            $insert = $this->arquivo_sigep->create($data);
+            $dataForm['taxvalue'] = number_format(str_replace(",", ".",str_replace(".", "",$dataForm['taxvalue'])), 2, '.', '');
+
+
+            // id, year, title, startdate, enddate, extramessage, instructionurl, terms, paymentfinaldate, taxvalue
+
+            $insert = $this->selective_process->create($dataForm);
             if($insert){
                 return redirect()->route($this->params['main_route'].'.index');
             }else{
                 return redirect()->route($this->params['main_route'].'.create')->withErrors(['Falha ao fazer Inserir.']);
             }
 
+        }else{
+            return redirect()->route($this->params['main_route'].'.create')->withErrors(['Falha ao carregar o arquivo.']);
         }
-
-
-
     }
 
-
-    public function import($id)
+    public function edit($id)
     {
-        $this->params['subtitulo']='Importar Arquivo Sigep';
+
+        $this->params['subtitulo']='Editar Processo Seletivo';
         $this->params['arvore']=[
            [
-               'url' => 'admin/arquivo_sigep',
-               'titulo' => 'Arquivo Sigep'
+               'url' => 'admin/admin',
+               'titulo' => 'Processo Seletivo'
            ],
            [
                'url' => '',
-               'titulo' => 'Cadastrar'
+               'titulo' => 'Editar'
            ]];
+        $params = $this->params;
+        $data = $this->selective_process->find($id);
 
-        $data = $this->arquivo_sigep->find($id);
-        if( $data->importado == 0){
-            // galerias
-            $GALERIAS = $this->galeria->select(DB::raw('UPPER(titulo) as titulo'))->get()->toArray();
-
-            // LIMPA ALOJAMENTOS
-            $desaloja =  $this->preso_alojamento->where('data_saida',NULL)->delete();
-
-            if($desaloja !== NULL){
-                $url = Storage::url($data->titulo);
-
-                $streamSSL = stream_context_create(array(
-                    "ssl"=>array(
-                        "verify_peer"=> false,
-                        "verify_peer_name"=> false
-                    )
-                ));
-
-                $csv = [];
-
-                $file_handle = fopen($url, 'r',false,$streamSSL);
-                while (!feof($file_handle)) {
-                    $csv[] = fgetcsv($file_handle, 0,',');
-                }
-                fclose($file_handle);
-
-                $tmp_presos = [];
-                $alojamento_preso=[];
-                $presos = $this->preso->all();
-                array_shift($csv);
-                foreach ($csv as $i => $v){
-                    $nome_prontuario = preg_split("/[\-]/", $v[0]);
-                    $prontuarios[]= trim($nome_prontuario[0]);
-                    $tmp_presos[$i]['prontuario'] = trim($nome_prontuario[0]);
-                    $tmp_presos[$i]['nome']             = trim($nome_prontuario[1]);
-                    $tmp_presos[$i]['rg']               =  trim($v[1]);
-                    $tmp_presos[$i]['data_nascimento']  =  \Carbon\Carbon::parse(strtotime(trim($v[2])))->format('Y-m-d') ;
-                    $tmp_presos[$i]['mae']              =  trim($v[3]);
-                    $tmp_presos[$i]['artigos']           =  trim($v[4]);
-                    $tmp_presos[$i]['situacao']  =  trim($v[5]);
-                    $alojamento =  preg_split("/(\/\s)/", $v[6]);
-                    $tmp_presos[$i]['bloco']            =  trim($alojamento[0]);
-                    $tmp_presos[$i]['galeria']          =  trim($alojamento[1]);
-                    $tmp_presos[$i]['cubiculo']         =  trim($alojamento[2]);
-                    $tmp_presos[$i]['origem']           =  trim($v[7]);
-                    $tmp_presos[$i]['data_prisao']      =  \Carbon\Carbon::parse(strtotime(trim($v[8])))->format('Y-m-d') ;
-                    $tmp_presos[$i]['data_depen']       =  \Carbon\Carbon::parse(strtotime(trim($v[9])))->format('Y-m-d') ;
-                    $tmp_presos[$i]['data_entrada']     =  \Carbon\Carbon::parse(strtotime(trim($v[10])))->format('Y-m-d') ;
-
-                    // VERIFICA SE A GALERIA EXISTE
-
-                    $galerias = array_search(strtoupper($tmp_presos[$i]['galeria']), array_column($GALERIAS, 'titulo'));
-
-
-                    // presos para alojar
-
-                    if($galerias !== false){
-
-
-                        // VERIFICA SE O PRESO ESTÁ CADASTRADO
-
-                        $presos = $this->preso->select('id')->where('prontuario',$tmp_presos[$i]['prontuario'])->first();
-
-                        if($presos){
-                           // $this->preso->find($presos["id"])->update($tmp_presos[$i]);
-                            $tmp_presos[$i]['id'] = $presos["id"];
-                        }else{
-                            $result = $this->preso->create($tmp_presos[$i]);
-                            if($result){
-                                $tmp_presos[$i]['id'] = $result->id;
-                            }
-                        }
-
-                        // ALOJA O PRESO
-
-                         $cubiculo_id =  $this->cubiculo->getCubiculoIdGaleriaCubiculo($tmp_presos[$i]['galeria'] ,$tmp_presos[$i]['cubiculo'])->first();
-
-                        $tmp_alojamento_preso= [];
-                        $tmp_alojamento_preso["preso_id"]= $tmp_presos[$i]['id'];
-                        $tmp_alojamento_preso["cubiculo_id"]=  $cubiculo_id["id"];
-                        $tmp_alojamento_preso["data_entrada"]= \Carbon\Carbon::now()->setTimezone('America/Sao_Paulo');
-
-                        array_push($alojamento_preso,$tmp_alojamento_preso) ;
-
-
-                    }
-                    $i++;
-
-                }
-                if(! $this->preso_alojamento->insert($alojamento_preso)){
-                    return redirect()->back()->withErrors(['Erro ao criar novo alojamento']);
-                }
-            }else{
-                return redirect()->back()->withErrors(['Erro ao importar, Desalojar os presos já importado anteriormente.']);
-            }
-
-        }else{
-            return redirect()->back()->withErrors(['Erro ao importar, Arquivo já importado anteriormente.']);
-
-        }
-        if(!$data->update(['importado' => 1])){
-            return redirect()->back()->withErrors(['Erro modificar status da importação.']);
-        }
-
-        return redirect()->route($this->params['main_route'].'.index');
+        return view($this->params['main_route'].'.create',compact('params', 'data'));
     }
 
-    public function update(ArquivoSigepRequest $request, $id)
+    public function update(SelectiveProcessUpdateRequest $request, $id)
     {
-        $data = $this->arquivo_sigep->find($id);
+        $data = $this->selective_process->find($id);
 
         $dataForm  = $request->all();
+        $dataForm['taxvalue'] = number_format(str_replace(",", ".",str_replace(".", "",$dataForm['taxvalue'])), 2, '.', '');
+        if($request->hasFile('instructionurl')) {
+            $fileName = date('YmdHis').'.'.$request->file('instructionurl')->getClientOriginalExtension();
+            $filePath = $request->file('instructionurl')->storeAs('uploads', $fileName,'public');
+            $dataForm['instructionurl'] = $filePath;
+            if (Storage::exists('public/'.$data['instructionurl'])) {
+                // Delete the file
+                Storage::delete('public/'.$data['instructionurl']);
+                echo "File deleted successfully.";
+            } else {
+                echo "File not found.";
+            }
+
+
+        }
 
         if($data->update($dataForm)){
             return redirect()->route($this->params['main_route'].'.index');
@@ -214,7 +133,7 @@ class SelectiveProcessController extends Controller
 
     public function destroy($id)
     {
-        $data = $this->arquivo_sigep->find($id);
+        $data = $this->selective_process->find($id);
 
         if($data->delete()){
             return redirect()->route($this->params['main_route'].'.index');

@@ -415,10 +415,12 @@ class StudentController extends Controller
 
     public function reportxls(Request $request){
 
-        $searchFields = [];
-
         // REQUEST
-        $dataForm = $request->only('selective_process_id','social_name','cpf');
+        $tmpForm = $request->only('report_selective_process_id','report_social_name','report_cpf');
+
+        $dataForm['selective_process_id'] = $tmpForm['report_selective_process_id'];
+        $dataForm['social_name'] = $tmpForm['report_social_name'];
+        $dataForm['cpf'] = $tmpForm['report_cpf'];
 
         $preload['selective_process_id'] = $this->selective_process->select('id','title')->get()->pluck('title','id');
 
@@ -444,6 +446,81 @@ class StudentController extends Controller
                                             $join->on('ssp.student_id', 'students.id');
                                             $join->where('ssp.selective_process_id', $this->selective_process_id);
                                         })
+                                        ->get();
+            }
+        }else{
+            exit;
+        }
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $description = $this->student->desc_fill;
+        $row = 1;
+
+        foreach($data as $i => $v){
+            $tmp = $v->toArray();
+            $column = 'A';
+            foreach ($tmp as $key => $value) {
+                if(isset($description[$key]) ){
+                    if($row === 1){
+                        $sheet->setCellValue($column.$row, $description[$key]);
+                        $sheet->getStyle($column.$row)->applyFromArray($this->style['title']);
+                        $sheet->setCellValue($column.($row+1), $value);
+                        $sheet->getStyle($column.($row+1))->applyFromArray($this->style['text']);
+                    }else{
+                        $sheet->setCellValue($column.$row, $value);
+                        $sheet->getStyle($column.$row)->applyFromArray($this->style['text']);
+                    }
+                    $column++;
+                }
+            }
+            if($row === 1){
+                $row++;
+            }
+            $row++;
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        $filename = 'INSCRICOES.xlsx';
+
+        // Cabeçalhos para definir o tipo de conteúdo e o nome do arquivo
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="' . $filename . '"');
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+        exit;
+    }
+
+    public function reportxlsnotstudent(Request $request){
+
+        // REQUEST
+        $tmpForm = $request->only('report_selective_process_id','report_social_name','report_cpf');
+
+        $dataForm['selective_process_id'] = $tmpForm['report_selective_process_id'];
+        $dataForm['social_name'] = $tmpForm['report_social_name'];
+        $dataForm['cpf'] = $tmpForm['report_cpf'];
+
+        $preload['selective_process_id'] = $this->selective_process->select('id','title')->get()->pluck('title','id');
+
+        if(isset($dataForm['selective_process_id']) && (intval($dataForm['selective_process_id']))){
+            $this->selective_process_id = intval($dataForm['selective_process_id']);
+        }else{
+            $this->selective_process_id = array_key_first($preload['selective_process_id']->toArray());
+        }
+        if($this->selective_process_id){
+            $preload['selective_process']= $this->selective_process_id;
+            if(isset($dataForm['social_name']) || isset($dataForm['cpf'])){
+                $social_name = (isset($dataForm['social_name'])) ? $dataForm['social_name'] : '';
+                $cpf = (isset($dataForm['cpf'])) ? $dataForm['cpf'] : '';
+
+                $data = $this->student  ->notRegistred($this->selective_process_id)
+                                        ->where('social_name','LIKE','%'.$social_name.'%')
+                                        ->where('cpf','LIKE','%'.$cpf.'%')
+                                        ->get();
+            }else{
+                $data = $this->student  ->notRegistred($this->selective_process_id)
                                         ->get();
             }
         }else{

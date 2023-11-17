@@ -19,12 +19,13 @@ class SelectiveProcess extends Model
         $student = new Student();
         $tmp = $student->select('id','registrationstep')->where('user_id',Auth::user()->id)->first();
         $student_id = ($tmp) ? $tmp['id'] : null;
-        return $this->hasMany(StudentSelectiveProcess::class, 'selective_process_id', 'id')->where('student_id',$student_id);
+            return $this->hasMany(StudentSelectiveProcess::class)
+                        ->where('student_id',$student_id);
     }
 
-    public function activeSelectiveProcess(){
-        return $this->where('startdate','<=',\Carbon\Carbon::now())
-                    ->Where('enddate','>=',\Carbon\Carbon::now())
+    public function current(){
+        return $this->where('startdate','<=',\Carbon\Carbon::today())
+                    ->Where('enddate','>=',\Carbon\Carbon::today())
                     ->first();
     }
 }

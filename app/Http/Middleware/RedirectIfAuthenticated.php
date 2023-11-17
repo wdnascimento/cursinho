@@ -20,39 +20,20 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, ...$guards)
     {
         $guards = empty($guards) ? [null] : $guards;
-
         foreach ($guards as $guard) {
-
-          switch ($guard) {
+            switch ($guard) {
                 case 'admin':
-                  if (Auth::guard($guard)->check()) {
-                    return redirect()->route('admin.dashboard');
-                  }
+                    if(Auth::guard($guard)->check()) {
+                        return redirect()->route('admin.dashboard');
+                    }
                 break;
-                default:
-                  if (Auth::guard($guard)->check()) {
-                    return redirect()->route('cadastro');
-
-                  }
+                default :
+                    if(Auth::guard($guard)->check()) {
+                        return redirect()->route('cadastro');
+                    }
                 break;
-              }
             }
-
+        }
         return $next($request);
     }
-/*
-    public function handle($request, Closure $next, $guard = null)
-        {
-            if ($guard == "admin" && Auth::guard($guard)->check()) {
-                return redirect('/admin');
-            }
-            if ($guard == "writer" && Auth::guard($guard)->check()) {
-                return redirect('/writer');
-            }
-            if (Auth::guard($guard)->check()) {
-                return redirect('/home');
-            }
-
-            return $next($request);
-        }*/
 }
