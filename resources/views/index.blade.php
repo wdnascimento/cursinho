@@ -2,15 +2,17 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-THSBEF9P7X"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+   <!-- Google tag (gtag.js) -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-THSBEF9P7X"></script>
+   <script>
+       window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+       gtag('config','G-THSBEF9P7X' , {
+           'cookie_domain': 'cursinhosolidario.org.br'
+       });
 
-        gtag('config', 'G-THSBEF9P7X');
-</script>
+   </script>
 
 
     <meta charset="utf-8">
@@ -31,8 +33,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favicon-16x16.png'); }}">
     <link rel="manifest" href="{{ asset('assets/site.webmanifest'); }}">
 
-    <!-- Template Main CSS File -->
-    <link href="{{ asset('home/assets/css/style.css') }}" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('home/assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
@@ -43,6 +43,8 @@
     <link href="{{ asset('home/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('home/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
+    <!-- Template Main CSS File -->
+    <link href="{{ asset('home/assets/css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <main >
@@ -225,7 +227,7 @@
                                 As questões estão divididas entre as seguintes disciplinas e possuem pesos diferentes:
                                 <br>
                                 <div class="img-responsive w-100 d-flex justify-content-center">
-                                  <img src="{{ asset('home/assets/img/prova.png'); }}" class="d-flex w-75"  alt="">
+                                  <img src="{{ asset('home/assets/img/prova.jpg'); }}" class="d-flex w-75"  alt="">
                                 </div>
                                 <br>
                                 Na capa do caderno de questões haverá instruções para o bom andamento da prova, que deverão ser lidas e cumpridas pelos candidatos
