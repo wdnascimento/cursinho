@@ -168,7 +168,7 @@
                                  não é necessário agendar um horário de atendimento.
                                 Após a realização da inscrição é necessário pagar a taxa de inscrição.
                                 A taxa de inscrição é de <strong> R$ 65,00 (sessenta e cinco reais) </strong>e deve ser efetuada a
-                                partir do dia 05/12 (terça-feira). Sua inscrição será confirmada com o pagamento da taxa.
+                                o pagamento até o dia 05/12 (terça-feira). Sua inscrição será confirmada com o pagamento da taxa.
                                 O comprovante de pagamento é a confirmação de sua inscrição, por isso, não o perca!
                               </p>
                             </div>
@@ -234,7 +234,7 @@
                                   hora após o início da mesma. Não será permitido o ingresso do candidato no local de prova após ás 18h30min.
                                   <br><br>
                                   O gabarito da prova será publicado no site www.formacaosolidaria.org.br no dia 06 DE DEZEMBRO DE 2023.
-                                  Até o dia 09/12, na secretaria da Formação Solidária e no site www.formacaosolidaria.org.br ,
+                                  Até o dia 09/12, na secretaria da Formação Solidária e no site <a href="https://www.formacaosolidaria.org.br">https://www.formacaosolidaria.org.br</a> ,
                                   será publicado o resultado da Primeira Fase do Processo Seletivo.
                                 </p>
                               </div>
