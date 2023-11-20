@@ -167,8 +167,8 @@
                                  O horário de atendimento acontece das 13h30 às 18h30,
                                  não é necessário agendar um horário de atendimento.
                                 Após a realização da inscrição é necessário pagar a taxa de inscrição.
-                                A taxa de inscrição é de <strong> R$ 65,00 (sessenta e cinco reais) </strong>e deve ser efetuada a
-                                o pagamento até o dia 05/12 (terça-feira). Sua inscrição será confirmada com o pagamento da taxa.
+                                A taxa de inscrição é de <strong> R$ 65,00 (sessenta e cinco reais) </strong>e deve ser paga
+                                até o dia 05/12 (terça-feira). Sua inscrição será confirmada com o pagamento da taxa.
                                 O comprovante de pagamento é a confirmação de sua inscrição, por isso, não o perca!
                               </p>
                             </div>
