@@ -470,10 +470,10 @@ class StudentController extends Controller
                                         ->join('student_selective_processes as ssp', function($join) use ($payment){
                                             $join->on('ssp.student_id', 'students.id');
                                             $join->where('ssp.selective_process_id', $this->selective_process_id);
-                                            $join->where('ssp.payment','LIKE','"%'.$payment.'%"');
+                                            $join->where('ssp.payment','LIKE','%'.$payment.'%');
                                         })
-                                        ->where('social_name','LIKE','"%'.$social_name.'%"')
-                                        ->where('cpf','LIKE','"%'.$cpf.'%"')
+                                        ->where('social_name','LIKE','%'.$social_name.'%')
+                                        ->where('cpf','LIKE','%'.$cpf.'%')
                                         ->get();
             }else{
                 $data = $this->student  ->select('students.*','ssp.payment as payment')
