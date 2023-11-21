@@ -24,7 +24,7 @@
                 </div>
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-xs-12 col-sm-12 col-md-10">
 
                             @if($preload['notRegistred'] == 1)
                             {{ Form::open(['route' => [$params['main_route'].'.notstudent',((isset($preload['selective_process'])) ? $preload['selective_process'] : '')],'method' =>'GET', 'id' => 'form_filtro']) }}
@@ -32,25 +32,28 @@
                             {{ Form::open(['route' => [$params['main_route'].'.index',((isset($preload['selective_process'])) ? $preload['selective_process'] : '')],'method' =>'GET', 'id' => 'form_filtro']) }}
                             @endif
                             <div class="row">
-                                <div class="col-3 pt-3">
+                                <div class="col-xs-12 col-sm-6 col-md-3 pt-3">
                                         {{Form::select('selective_process_id',
                                             $preload['selective_process_id'],
                                             ((isset($preload['selective_process'])) ? $preload['selective_process'] : null),
                                             ['id'=>'selective_process_id','class' =>'form-control'])}}
                                 </div>
-                                <div class="col-3 pt-3">
+                                <div class="col-xs-12 col-sm-6 col-md-3 pt-3">
                                     {{ Form::text('social_name',(isset($searchFields['social_name']) ? $searchFields['social_name'] : ''), ['class' => 'form-control', 'id' => 'social_name', 'placeholder' => 'Nome'])}}
                                 </div>
-                                <div class="col-3 pt-3">
+                                <div class="col-xs-12 col-sm-4 col-md-2 pt-3">
                                     {{ Form::text('cpf',(isset($searchFields['cpf']) ? $searchFields['cpf'] : ''), ['class' => 'form-control', 'id' => 'cpf',  'placeholder' => 'CPF'])}}
                                 </div>
-                                <div class="col-3 d-flex pt-3 ">
+                                <div class="col-xs-12 col-sm-4 col-md-3 pt-3">
+                                    {{ Form::text('payment',(isset($searchFields['payment']) ? $searchFields['payment'] : ''), ['class' => 'form-control', 'id' => 'payment',  'placeholder' => 'STATUS PAGAMENTO'])}}
+                                </div>
+                                <div class="col-xs-12 col-sm-4d-flex col-md-1 pt-3 ">
                                     {{ Form::submit('Buscar',['class'=>'btn btn-primary btn-sm d-flex']) }}
                                 </div>
                             </div>
                             {{ Form::close() }}
                         </div>
-                        <div class="col-2 d-flex align-content-center justify-content-end pt-3">
+                        <div class="col-xs-12 col-sm-12 col-md-2 d-flex align-content-center justify-content-end pt-3">
                             @if($preload['notRegistred'] == 1)
                                 {{ Form::open(['route' => [$params['main_route'].'.reportxls-notstudent',((isset($preload['selective_process'])) ? $preload['selective_process'] : '')],'method' =>'GET', 'id' => 'form_report']) }}
                             @else
@@ -58,7 +61,8 @@
                             @endif
                             {{ Form::hidden('report_selective_process_id', (isset($preload['selective_process']) ? $preload['selective_process'] : null) , [ 'id' => 'report_selective_process_id'])}}
                             {{ Form::hidden('report_social_name', (isset($searchFields['social_name']) ? $searchFields['social_name'] : ''), [ 'id' => 'report_social_name'])}}
-                            {{ Form::hidden('report_cpf',(isset($searchFields['social_name']) ? $searchFields['social_name'] : ''), [ 'id' => 'report_cpf'])}}
+                            {{ Form::hidden('report_cpf',(isset($searchFields['cpf']) ? $searchFields['cpf'] : ''), [ 'id' => 'report_cpf'])}}
+                            {{ Form::hidden('report_payment',(isset($searchFields['payment']) ? $searchFields['payment'] : ''), [ 'id' => 'report_payment'])}}
                             <div class="row d-flex justify-content-end align-content-center ">
                                 <button id="btn-export" class="btn btn-success btn-sm d-flex justify-content-center align-content-center" >
                                     <i  class="d-flex p-1 fas fa-file-excel"></i><span class="d-flex"> Exportar</span>
@@ -187,6 +191,7 @@
             $('#report_cpf').val($('#cpf').val());
             $('#report_selective_process_id').val($('#selective_process_id option:selected').val());
             $('#report_social_name').val($('#social_name').val());
+            $('#report_payment').val($('#payment').val());
             $('#form_report').submit();
         });
 

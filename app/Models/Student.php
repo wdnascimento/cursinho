@@ -16,8 +16,6 @@ class Student extends Model
             , 'localidade', 'uf', 'complemento' , 'father', 'mother', 'worker', 'desc_worker' , 'time_work' , 'desc_time_work'
             , 'saturday_work', 'desc_saturday_work' , 'saturday_time', 'desc_saturday_time', 'place_study' , 'desc_place_study'
             , 'specialneed', 'desc_specialneed', 'descriptionneed', 'quota', 'desc_quota', 'registrationstep'
-
-
         ];
 
     public $desc_fill =
@@ -150,22 +148,26 @@ class Student extends Model
         return \Carbon\Carbon::parse($this->birthdate)->format('d/m/Y');
     }
 
+    // REGISTRATION STEP
     public function getRegistrationStep($user_id){
         $step = $this   ->select('registrationstep')
-                        ->where('user_id',$user_id)
-                        ->first();
+        ->where('user_id',$user_id)
+        ->first();
         return ($step == null) ? 1 : $step['registrationstep'];
     }
 
+    // RESPONSE
     public function responses()
     {
         return $this->belongsToMany(Response::class, 'student_responses', 'student_id', 'response_id');
     }
 
+    // STUDENT SELECTIVE PROCESS
     public function studentSelectiveProcess(){
         return $this->hasMany(StudentSelectiveProcess::class);
     }
 
+    // NOT REGISTRATION
     public function notRegistred($selective_process_id)
     {
         return  $this->whereDoesntHave('studentSelectiveProcess', function ($query)  use ($selective_process_id) {
@@ -173,7 +175,7 @@ class Student extends Model
         });
     }
 
-
+    // STUDENT RESPONSES
     public function studentResponses(){
         // id, student_id, response_id, selective_process_id, textvalue, optvalue, created_at, updated_at
         return $this->hasMany(StudentResponse::class);

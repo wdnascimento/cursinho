@@ -146,7 +146,7 @@ class StudentController extends Controller
         $searchFields = [];
 
         // REQUEST
-        $dataForm = $request->only('selective_process_id','social_name','cpf');
+        $dataForm = $request->only('selective_process_id','social_name','cpf','payment');
         // dd($selective_process);
         $preload['selective_process_id'] = $this->selective_process->select('id','title')->get()->pluck('title','id');
 
@@ -157,19 +157,22 @@ class StudentController extends Controller
         }
         if($this->selective_process_id){
             $preload['selective_process']= $this->selective_process_id;
-            if(isset($dataForm['social_name']) || isset($dataForm['cpf'])){
+            if(isset($dataForm['social_name']) || isset($dataForm['cpf']) || isset($dataForm['payment'])){
                 $social_name = (isset($dataForm['social_name'])) ? $dataForm['social_name'] : '';
                 $cpf = (isset($dataForm['cpf'])) ? $dataForm['cpf'] : '';
+                $payment = (isset($dataForm['payment'])) ? $dataForm['payment'] : '';
                 $data = $this->student  ->select('students.*','ssp.payment')
-                                        ->join('student_selective_processes as ssp', function($join){
+                                        ->join('student_selective_processes as ssp', function($join) use($payment){
                                             $join->on('ssp.student_id', 'students.id');
                                             $join->where('ssp.selective_process_id', $this->selective_process_id);
+                                            $join->where('ssp.payment','LIKE','%'.$payment.'%');
                                         })
                                         ->where('social_name','LIKE','%'.$social_name.'%')
                                         ->where('cpf','LIKE','%'.$cpf.'%')
                                         ->paginate($this->paginate);
                 $searchFields['social_name']= $social_name ;
                 $searchFields['cpf']= $cpf ;
+                $searchFields['payment']= $payment ;
             }else{
                 $data = $this->student  ->select('students.*','ssp.payment')
                                         ->join('student_selective_processes as ssp', function($join){
@@ -443,11 +446,12 @@ class StudentController extends Controller
     public function reportxls(Request $request){
 
         // REQUEST
-        $tmpForm = $request->only('report_selective_process_id','report_social_name','report_cpf');
+        $tmpForm = $request->only('report_selective_process_id','report_social_name','report_cpf','report_payment');
 
         $dataForm['selective_process_id'] = $tmpForm['report_selective_process_id'];
         $dataForm['social_name'] = $tmpForm['report_social_name'];
         $dataForm['cpf'] = $tmpForm['report_cpf'];
+        $dataForm['payment'] = $tmpForm['report_payment'];
 
         $preload['selective_process_id'] = $this->selective_process->select('id','title')->get()->pluck('title','id');
 
@@ -458,13 +462,15 @@ class StudentController extends Controller
         }
         if($this->selective_process_id){
             $preload['selective_process']= $this->selective_process_id;
-            if(isset($dataForm['social_name']) || isset($dataForm['cpf'])){
+            if(isset($dataForm['social_name']) || isset($dataForm['cpf']) || isset($dataForm['payment'])){
                 $social_name = (isset($dataForm['social_name'])) ? $dataForm['social_name'] : '';
                 $cpf = (isset($dataForm['cpf'])) ? $dataForm['cpf'] : '';
-                $data = $this->student  ->select('students.*')
-                                        ->join('student_selective_processes as ssp', function($join){
+                $cpf = (isset($dataForm['cpf'])) ? $dataForm['cpf'] : '';
+                $data = $this->student  ->select('students.*','ssp.payment')
+                                        ->join('student_selective_processes as ssp', function($join) use ($payment){
                                             $join->on('ssp.student_id', 'students.id');
                                             $join->where('ssp.selective_process_id', $this->selective_process_id);
+                                            $join->where('ssp.payment','LIKE','%'.$payment.'%');
                                         })
                                         ->where('social_name','LIKE','%'.$social_name.'%')
                                         ->where('cpf','LIKE','%'.$cpf.'%')
