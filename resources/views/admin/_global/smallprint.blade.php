@@ -257,7 +257,7 @@
                                     $tmp = json_decode($data[$item->id]["textvalue"],true);
                                     $textvalue = (is_array($tmp) && isset($tmp[$options->id])) ? $tmp[$options->id] : '';
                                 @endphp
-                                <div class="col-6 col-md-3 pt-1">
+                                <div class="col-6 pt-1">
                                     <p class="p-0 m-0 w-100"><strong>{{ $options->text }}: </strong>{{ $textvalue }}</p>
                                 </div>
                                 @endif
