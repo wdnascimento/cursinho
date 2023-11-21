@@ -473,9 +473,10 @@
    <script>
        window.dataLayer = window.dataLayer || [];
        function gtag(){
-            dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config','G-THSBEF9P7X' , {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config','G-THSBEF9P7X' , {
                 'cookie_domain': 'cursinhosolidario.org.br'
         });
 

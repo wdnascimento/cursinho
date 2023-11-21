@@ -247,7 +247,10 @@ class StudentController extends Controller
         $preload['questions'] = $questions->with('responses')->get();
         $responses = new StudentResponse();
         // id, student_id, response_id, textvalue, optvalue, created_at, updated_at
-        $data = $responses->select('response_id','textvalue','optvalue')->where('student_id',$student_id)->get();
+        $data = $responses  ->select('response_id','textvalue','optvalue')
+                            ->where('student_id',$student_id)
+                            ->where('selective_process_id',$selective_process_id)
+                            ->get();
         foreach($data as $i => $v){
             $tmp[$v['response_id']]['textvalue']= $v['textvalue'];
             $tmp[$v['response_id']]['optvalue']= $v['optvalue'];
@@ -260,14 +263,36 @@ class StudentController extends Controller
 
         $data['student'] = $this->student->where('id',$student_id)->first();
 
-        $selective_processes = new SelectiveProcess();
-        $data['selective_processes'] = $selective_processes
-                            ->where('startdate','<=',\Carbon\Carbon::now())
-                            ->Where('enddate','>=',\Carbon\Carbon::now())
-                            ->with('studentSelectiveProcesses')
-                            ->first();
+        $data['selective_processes'] = $this->selective_process->find($selective_process_id);
         return view('admin._global.print',compact('data','preload'));
         // return PDF::loadView('admin._global.print',compact('data'))->setPaper('A4', 'portrait')->download('inscricao.pdf','_blank');
+    }
+
+    public function smallprint($student_id , $selective_process_id){
+
+        $questions = new Question();
+        $preload['questions'] = $questions->with('responses')->get();
+        $responses = new StudentResponse();
+        // id, student_id, response_id, textvalue, optvalue, created_at, updated_at
+        $data = $responses  ->select('response_id','textvalue','optvalue')
+                            ->where('student_id',$student_id)
+                            ->where('selective_process_id',$selective_process_id)
+                            ->get();
+        foreach($data as $i => $v){
+            $tmp[$v['response_id']]['textvalue']= $v['textvalue'];
+            $tmp[$v['response_id']]['optvalue']= $v['optvalue'];
+        }
+
+
+        $data = $tmp;
+
+        $data['student_id'] = $student_id;
+
+        $data['student'] = $this->student->where('id',$student_id)->first();
+
+        $data['selective_processes'] = $this->selective_process->find($selective_process_id);
+        return view('admin._global.smallprint',compact('data','preload'));
+        // return PDF::loadView('admin._global.smallprint',compact('data'))->setPaper('A4', 'portrait')->download('inscricao.pdf','_blank');
     }
 
     public function makexls($student_id , $selective_process_id){

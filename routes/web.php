@@ -61,6 +61,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'],function(){
     Route::get('reportxls', [AdminStudentController::class,'reportxls'])->name('admin.student.reportxls');
     Route::get('reportxls-notstudent', [AdminStudentController::class,'reportxlsnotstudent'])->name('admin.student.reportxls-notstudent');
     Route::get('student/print/{student_id}/process/{selective_process_id}', [AdminStudentController::class,'print'])->name('admin.student.print');
+    Route::get('student/smallprint/{student_id}/process/{selective_process_id}', [AdminStudentController::class,'smallprint'])->name('admin.student.smallprint');
     Route::get('student/makexls/{student_id}/process/{selective_process_id}', [AdminStudentController::class,'makexls'])->name('admin.student.makexls');
     Route::get('notstudent', [AdminStudentController::class,'notRegistred'])->name('admin.student.notstudent');
 });

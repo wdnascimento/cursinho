@@ -93,7 +93,7 @@
                                     <th>Cotista?</th>
                                     @if($preload['notRegistred'] == 0)
                                     <th>Pagamento</th>
-                                    <th colspan="3"></th>
+                                    <th colspan="4"></th>
                                     @endif
                                 </tr>
                             </thead>
@@ -118,6 +118,11 @@
                                         {{-- <td >
                                             <button-student-component student_id="{{ $item['id'] }}" selective_process_id="{{ $preload['selective_process'] }}" name="{{ $item['social_name'] }}" ></button-student-component>
                                         </td> --}}
+                                        <td>
+                                            <a id="btn-smallprint" href="{{ route($params['main_route'].'.smallprint', [ 'student_id' => $item['id'], 'selective_process_id' => $preload['selective_process'] ] ) }}" data-toggle="tooltip" title="Somente Resposta">
+                                                <i class="fas fa-print"></i>
+                                            </a>
+                                        </td>
                                         <td>
                                             <a id="btn-print" href="{{ route($params['main_route'].'.print', [ 'student_id' => $item['id'], 'selective_process_id' => $preload['selective_process'] ] ) }}" data-toggle="tooltip" title="Imprimir">
                                                 <i class="fas fa-print"></i>
