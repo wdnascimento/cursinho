@@ -472,11 +472,12 @@
    <script async src="https://www.googletagmanager.com/gtag/js?id=G-THSBEF9P7X"></script>
    <script>
        window.dataLayer = window.dataLayer || [];
-       function gtag(){dataLayer.push(arguments);}
-       gtag('js', new Date());
-       gtag('config','G-THSBEF9P7X' , {
-           'cookie_domain': 'cursinhosolidario.org.br'
-       });
+       function gtag(){
+            dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config','G-THSBEF9P7X' , {
+                'cookie_domain': 'cursinhosolidario.org.br'
+        });
 
    </script>
 </body>
