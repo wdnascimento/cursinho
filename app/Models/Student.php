@@ -52,6 +52,7 @@ class Student extends Model
             'desc_specialneed' => 'Atendimento Especial?',
             'descriptionneed' => 'Qual',
             'desc_quota' => 'Cotista',
+            'email' => 'E-mail',
             'payment' => 'Pagamento',
         ];
 

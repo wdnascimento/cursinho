@@ -324,7 +324,7 @@ class StudentController extends Controller
         }
 
         DB::commit();
-        return redirect()->route('cadastro');
+        return redirect()->route('student.form.edit',3);
 
     }
 
