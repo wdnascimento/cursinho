@@ -161,12 +161,13 @@ class StudentController extends Controller
                 $social_name = (isset($dataForm['social_name'])) ? $dataForm['social_name'] : '';
                 $cpf = (isset($dataForm['cpf'])) ? $dataForm['cpf'] : '';
                 $payment = (isset($dataForm['payment'])) ? $dataForm['payment'] : '';
-                $data = $this->student  ->select('students.*','ssp.payment')
+                $data = $this->student  ->select('students.*','ssp.payment','u.email as email')
                                         ->join('student_selective_processes as ssp', function($join) use($payment){
                                             $join->on('ssp.student_id', 'students.id');
                                             $join->where('ssp.selective_process_id', $this->selective_process_id);
                                             $join->where('ssp.payment','LIKE','%'.$payment.'%');
                                         })
+                                        ->join('users as u','u.id','students.user_id')
                                         ->where('social_name','LIKE','%'.$social_name.'%')
                                         ->where('cpf','LIKE','%'.$cpf.'%')
                                         ->paginate($this->paginate);
@@ -174,11 +175,12 @@ class StudentController extends Controller
                 $searchFields['cpf']= $cpf ;
                 $searchFields['payment']= $payment ;
             }else{
-                $data = $this->student  ->select('students.*','ssp.payment')
+                $data = $this->student  ->select('students.*','ssp.payment','u.email as email')
                                         ->join('student_selective_processes as ssp', function($join){
                                             $join->on('ssp.student_id', 'students.id');
                                             $join->where('ssp.selective_process_id', $this->selective_process_id);
                                         })
+                                        ->join('users as u','u.id','students.user_id')
                                         ->paginate($this->paginate);
                 $searchFields['name']= '';
                 $searchFields['cpf']= '' ;
@@ -218,6 +220,8 @@ class StudentController extends Controller
                 $social_name = (isset($dataForm['social_name'])) ? $dataForm['social_name'] : '';
                 $cpf = (isset($dataForm['cpf'])) ? $dataForm['cpf'] : '';
                 $data = $this->student  ->notRegistred($this->selective_process_id)
+                                        ->join('users as u','u.id','students.user_id')
+                                        ->select('students.*','u.email as email')
                                         ->where('social_name','LIKE','%'.$social_name.'%')
                                         ->where('cpf','LIKE','%'.$cpf.'%')
                                         ->paginate($this->paginate);
@@ -225,6 +229,8 @@ class StudentController extends Controller
                 $searchFields['cpf']= $cpf ;
             }else{
                 $data = $this->student  ->notRegistred($this->selective_process_id)
+                                        ->join('users as u','u.id','students.user_id')
+                                        ->select('students.*','u.email as email')
                                         ->paginate($this->paginate);
                 $searchFields['name']= '';
                 $searchFields['cpf']= '' ;
@@ -553,11 +559,16 @@ class StudentController extends Controller
                 $cpf = (isset($dataForm['cpf'])) ? $dataForm['cpf'] : '';
 
                 $data = $this->student  ->notRegistred($this->selective_process_id)
+                                        ->join('users as u','u.id','students.user_id')
+                                        ->select('students.*','u.email as email')
                                         ->where('social_name','LIKE','%'.$social_name.'%')
                                         ->where('cpf','LIKE','%'.$cpf.'%')
+                                        ->with('user')
                                         ->get();
             }else{
                 $data = $this->student  ->notRegistred($this->selective_process_id)
+                                        ->join('users as u','u.id','students.user_id')
+                                        ->select('students.*','u.email as email')
                                         ->get();
             }
         }else{

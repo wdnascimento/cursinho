@@ -89,6 +89,7 @@
                                     <th>CPF</th>
                                     <th>Nome Social</th>
 
+                                    <th>E-mail</th>
                                     <th>Nascimento</th>
                                     <th>Cidade</th>
                                     <th>A. Esp</th>
@@ -108,6 +109,7 @@
                                         <td >{{ $item['cpf']}}</td>
                                         <td >{{ $item['social_name']}}</td>
 
+                                        <td>{{ $item['email']}}</td>
                                         <td>{{ \Carbon\Carbon::parse($item["birthdate"])->format('d/m/Y') }}</td>
                                         <td >{{ $item['localidade']}}</td>
                                         <td @if($item['specialneed']) class="bg-danger" @endif>{{ $item['desc_specialneed']}}</td>

@@ -182,5 +182,10 @@ class Student extends Model
         // id, student_id, response_id, selective_process_id, textvalue, optvalue, created_at, updated_at
         return $this->hasMany(StudentResponse::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
 
