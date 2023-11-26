@@ -3,7 +3,7 @@
         <div class="col-12">
             <GChart
                 type="PieChart"
-                :data="chartData"
+                :data="this.googleChartData"
                 :options="chartOptions"
                 :width="400"
                 :height="300"
@@ -32,7 +32,6 @@
 
     data() {
       return {
-
         googleChartData: null ,
         chartOptions: {
           title: this.title,
@@ -41,18 +40,11 @@
       };
     },
 
-    computed: {
-        chartData() {
-            return this.googleChartData;
-        },
-    },
     created(){
-        // Convertendo a string JSON para um objeto JavaScript
         const jsonData = JSON.parse(this.responses);
-        // Formatando os dados no formato aceito pelo Google Charts (array de arrays)
         const googleChartData = Object.values(jsonData).map(item => [item.text, item.count_value]);
         googleChartData.unshift(['Resposta', 'Quantidade']);
-        this.googleChartData = googleChartData ;
+        this.$data.googleChartData = googleChartData ;
     }
   };
   </script>

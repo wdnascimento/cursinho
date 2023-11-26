@@ -12,12 +12,9 @@ import ChartComponent from './components/ChartComponent';
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 
-// import { GChart } from 'vue-google-charts';
-
 const app = createApp({});
 
 app.use(VueToast);
-// app.use(GChart);
 
 //register the component
 app.component('button-payment-component', ButtonPaymentComponent);

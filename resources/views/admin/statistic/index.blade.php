@@ -47,7 +47,7 @@
 
                     @if(isset($data) && count($data))
                         @foreach ( $data as $item)
-                            <chart-component title="{{ $item['text'] }}" responses="{{ json_encode($item['responses']) }}"  ></chart-component>
+                            <chart-component id="{{ $item['question_id'] }}" title="{{ $item['text'] }}" question_id="{{ $item['question_id'] }}" responses="{{ json_encode($item['responses']) }}"  ></chart-component>
                         @endforeach
                     @endif
                 </div>

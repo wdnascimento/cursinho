@@ -59,6 +59,7 @@ class StatisticController extends Controller
                                     ->get();
             $tmp= [];
             foreach ($data as $i => $v){
+                $tmp[$v->question_id]['question_id'] = $v->question_id;
                 $tmp[$v->question_id]['text'] = $v->question_text;
                 $tmp[$v->question_id]['responses'][$v->response_id]["text"]=$v->response_text;
                 $tmp[$v->question_id]['responses'][$v->response_id]["count_value"]=$v->count_value;
