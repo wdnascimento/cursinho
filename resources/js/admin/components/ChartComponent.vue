@@ -2,6 +2,7 @@
     <div class="row">
         <div class="col-12">
             <GChart
+                :settings="{ packages: ['corechart'] , language: 'pt-BR'}"
                 type="PieChart"
                 :data="JSON.parse(JSON.stringify(this.googleChartData))"
                 :options="chartOptions"
@@ -52,6 +53,7 @@
         const tmp = Object.values(jsonData).map(item => [item.text, item.count_value]);
         tmp.unshift(['Resposta', 'Quantidade']);
         this.googleChartData = Array.from(tmp);
+        console.log(JSON.parse(JSON.stringify(this.googleChartData)));
     }
   };
   </script>

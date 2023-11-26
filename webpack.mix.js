@@ -19,5 +19,5 @@ mix .js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .css('resources/css/login.css', 'public/css')
     .css('resources/css/custom.css', 'public/css')
-    .vue({version : 3})
+    .vue()
     .sourceMaps();

@@ -72,6 +72,5 @@
         $('#selective_process_id').on('change', function(){
             $('#form_filtro').submit();
         });
-
     </script>
 @stop
