@@ -47,10 +47,7 @@
 
                     @if(isset($data) && count($data))
                         @foreach ( $data as $item)
-                        @php
-                            $json = json_encode($item['responses'])
-                        @endphp
-                        <chart-component title="{{ $item['text'] }}" responses="{{ $json }}"  ></chart-component>
+                            <chart-component title="{{ $item['text'] }}" responses="{{ json_encode($item['responses']) }}"  ></chart-component>
                         @endforeach
                     @endif
                 </div>
