@@ -2,12 +2,12 @@
     <div class="row">
         <div class="col-12">
             <GChart
-                :settings="{ packages: ['corechart'] , language: 'pt-BR'}"
+                :settings="{ packages: ['corechart' , 'table', 'map'] , language: 'pt-BR'}"
                 type="PieChart"
-                :data="JSON.parse(JSON.stringify(this.googleChartData))"
+                :data="JSON.parse(JSON.stringify(this.ChartData))"
                 :options="chartOptions"
                 :width="400"
-                :height="300"
+                :height="500"
             />
         </div>
     </div>
@@ -34,7 +34,7 @@
 
     data() {
       return {
-        googleChartData:  [] ,
+        ChartData:  [] ,
         chartOptions: {
           title: this.title,
           is3D: true,
@@ -49,11 +49,17 @@
     },
 
     mounted(){
-        const jsonData = JSON.parse(this.responses);
-        const tmp = Object.values(jsonData).map(item => [item.text, item.count_value]);
-        tmp.unshift(['Resposta', 'Quantidade']);
-        this.googleChartData = Array.from(tmp);
-        console.log(JSON.parse(JSON.stringify(this.googleChartData)));
+        const dados = JSON.parse(this.responses);
+        // Montando o array no formato desejado para o Google Charts
+        const googleChartData = [['Resposta', 'Quantidade']];
+        // Iterando sobre os dados fornecidos para adicionar ao array no formato desejado
+        for (const chave in dados) {
+            if (dados.hasOwnProperty(chave)) {
+                const item = dados[chave];
+                googleChartData.push([item.text, parseInt(item.count_value)]);
+            }
+        }
+        this.ChartData = googleChartData;
     }
   };
   </script>
