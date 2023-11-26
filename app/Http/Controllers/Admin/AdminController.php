@@ -11,6 +11,8 @@ use App\Http\Requests\Admin\Admin\AdminUpdatePasswordRequest;
 use App\Models\Role;
 use DB;
 use Exception;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class AdminController extends Controller
  {
@@ -35,7 +37,11 @@ class AdminController extends Controller
         ];
 
         $params = $this->params;
-        $data = $this->admin->get();
+        if(Gate::allows('admin', Auth::user())) {
+            $data = $this->admin->get();
+        }else{
+            $data = $this->admin->where('id',Auth::user()->id)->get();
+        }
         return view('admin.admin.index',compact('params','data'));
     }
 
@@ -53,7 +59,7 @@ class AdminController extends Controller
                'titulo' => 'Cadastrar'
            ]];
        $params = $this->params;
-       $preload['roles'] = $this->role->select('title','id')->get()->pluck('title','id');
+       $preload['roles'] = $this->role->select('name','id')->get()->pluck('name','id');
        return view('admin.admin.create',compact('params','preload'));
     }
 
@@ -86,7 +92,7 @@ class AdminController extends Controller
         $params = $this->params;
 
         $data = $this->admin->find($id);
-        $preload['roles'] = $roles->select('title','id')->get()->pluck('title','id');
+        $preload['roles'] = $roles->select('name','id')->get()->pluck('name','id');
         return view('admin.admin.show',compact('params','data','preload'));
     }
 
@@ -107,7 +113,7 @@ class AdminController extends Controller
 
        $data = $this->admin->find($id);
 
-       $preload['roles'] = $roles->select('title','id')->get()->pluck('title','id');
+       $preload['roles'] = $roles->select('name','id')->get()->pluck('name','id');
 
        return view('admin.admin.create',compact('params', 'data','preload'));
     }
@@ -151,7 +157,7 @@ class AdminController extends Controller
         $params = $this->params;
 
         $data = $this->admin->find($id);
-        $preload['roles'] = $roles->select('title','id')->get()->pluck('title','id');
+        $preload['roles'] = $roles->select('name','id')->get()->pluck('name','id');
         return view('admin.admin.show-password',compact('params','data','preload'));
     }
 

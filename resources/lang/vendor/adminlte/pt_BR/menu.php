@@ -10,6 +10,7 @@ return [
     'register'                      => 'Inscrições',
     'profile'                       => 'Perfil',
     'change_password'               => 'Mudar Senha',
+    'register_admins'               => 'Usuários',
     'multilevel'                    => 'Multinível',
     'level_one'                     => 'Nível 1',
     'level_two'                     => 'Nível 2',

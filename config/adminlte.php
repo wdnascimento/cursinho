@@ -331,11 +331,27 @@ return [
                 'label_color' => 'success',
             ],
 
+        ['header' => 'Estatísticas'],
+            [
+                'text'        => 'Ver Gráficos',
+                'url'         => 'admin/statistic',
+                'icon'        => 'fas fa-chart-pie',
+                // 'label'       => 4,
+                'label_color' => 'success',
+            ],
+
         ['header' => 'account_settings'],
         [
             'text' => 'change_password',
             'url'  => 'admin/admin',
             'icon' => 'fas fa-fw fa-lock',
+            'can' => ['secretaria']
+        ],
+        [
+            'text' => 'register_admins',
+            'url'  => 'admin/admin',
+            'icon' => 'fas fa-fw fa-lock',
+            'can' => ['admin']
         ],
 
         // ['header' => 'labels'],

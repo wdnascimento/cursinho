@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\SelectiveProcessController as AdminSelectiveProcessController;
+use App\Http\Controllers\Admin\StatisticController;
 use App\Http\Controllers\Admin\StudentController as AdminStudentController;
 use App\Http\Controllers\Auth\Admin\AdminLoginController;
 use App\Http\Controllers\Site\HomeController;
@@ -39,12 +40,12 @@ Route::prefix('admin')->group(function() {
 Route::group(['prefix' => 'admin','middleware' => 'auth:admin'],function(){
     Route::get('/', [IndexController::class,'index'])->name('admin.dashboard');
     Route::get('admin', [AdminController::class,'index'])->name('admin.admin.index');
-    Route::get('admin/create', [AdminController::class, 'create'])->name('admin.admin.create');
-    Route::post('admin/store', [AdminController::class, 'store'])->name('admin.admin.store');
-    Route::get('admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.admin.edit');
-    Route::get('admin/show/{id}', [AdminController::class, 'show'])->name('admin.admin.show');
+    Route::get('admin/create', [AdminController::class, 'create'])->middleware('can:admin')->name('admin.admin.create');
+    Route::post('admin/store', [AdminController::class, 'store'])->middleware('can:admin')->name('admin.admin.store');
+    Route::get('admin/edit/{id}', [AdminController::class, 'edit'])->middleware('can:admin')->name('admin.admin.edit');
+    Route::get('admin/show/{id}', [AdminController::class, 'show'])->middleware('can:admin')->name('admin.admin.show');
     Route::put('admin/update/{id}', [AdminController::class, 'update'])->name('admin.admin.update');
-    Route::delete('admin/destroy/{id}', [AdminController::class, 'destroy'])->name('admin.admin.destroy');
+    Route::delete('admin/destroy/{id}', [AdminController::class, 'destroy'])->middleware('can:admin')->name('admin.admin.destroy');
 
     Route::get('selective_process', [AdminSelectiveProcessController::class,'index'])->name('admin.selective_process.index');
     Route::get('selective_process/create', [AdminSelectiveProcessController::class, 'create'])->name('admin.selective_process.create');
@@ -64,6 +65,9 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'],function(){
     Route::get('student/smallprint/{student_id}/process/{selective_process_id}', [AdminStudentController::class,'smallprint'])->name('admin.student.smallprint');
     Route::get('student/makexls/{student_id}/process/{selective_process_id}', [AdminStudentController::class,'makexls'])->name('admin.student.makexls');
     Route::get('notstudent', [AdminStudentController::class,'notRegistred'])->name('admin.student.notstudent');
+
+    // Statistic
+    Route::get('statistic', [StatisticController::class,'index'])->name('admin.statistic.index');
 });
 
 

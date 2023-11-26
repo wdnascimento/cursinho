@@ -53,7 +53,7 @@ class Admin extends Authenticatable
 
         $this->role = new Role();
 
-        $tmp_value = $this->role->select('slug')->find($this->role_id);
-        return $tmp_value['slug'];
+        $tmp_value = $this->role->select('name')->find($this->role_id);
+        return ($tmp_value) ? $tmp_value['name'] : '' ;
     }
 }

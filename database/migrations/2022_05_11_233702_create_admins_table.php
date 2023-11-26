@@ -15,17 +15,13 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('role_id')->unsigned(); // FOREING KEY
-
+            $table->Integer('role_id');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
-            $table  ->foreign('role_id')
-                    ->references('id')
-                    ->on('roles')
-                    ->onDelete('cascade');
+            $table->foreign('role_id')->references('id')->on('roles');
 
             $table->rememberToken();
             $table->softDeletes();

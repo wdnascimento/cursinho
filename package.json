@@ -30,6 +30,7 @@
         "jquery": "^3.7.1",
         "jquery-mask-plugin": "^1.14.16",
         "tiny-emitter": "^2.1.0",
+        "vue-google-charts": "^1.1.0",
         "vue-jquery-mask": "^2.0.0",
         "vue-router": "^4.0.13",
         "vue-step-wizard": "^0.1.17",

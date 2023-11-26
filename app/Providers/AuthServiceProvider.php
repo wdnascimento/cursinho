@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -25,6 +26,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('admin', function ($admin) {
+            return ($admin->role_id == 1) ? Response::allow() : Response::deny('Conteudo permitido somente para administratores.');
+         });
+
+         Gate::define('secretaria', function ($admin) {
+             return ($admin->role_id == 2) ? Response::allow() : Response::deny('Conteudo permitido somente para secretaria.');
+         });
+
+
     }
 }

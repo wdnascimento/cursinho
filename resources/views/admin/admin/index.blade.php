@@ -16,9 +16,11 @@
                         <div class="col-6">
                             <h3 class="card-title">{{$params['subtitulo']}}</h3>
                         </div>
+                        @can('admin')
                         <div class="col-6 text-right">
                             <a href="{{ route($params['main_route'].'.create')}}" class="btn btn-primary btn-xs"><span class="fas fa-plus"></span> Novo Cadastro</a>
                         </div>
+                        @endcan
                     </div>
 
                 </div>
@@ -42,8 +44,10 @@
                                     <td>{{ $item->email}}</td>
                                     <td>{{ $item->desc_role }}</td>
                                     <td>
+                                        @can('admin')
                                         <a href="{{ route($params['main_route'].'.edit', $item->id) }}" class="btn btn-info btn-xs"><span class="fas fa-edit"></span> Editar</a>
                                         <a href="{{ route($params['main_route'].'.show', $item->id) }}" class="btn btn-danger btn-xs"><span class="fas fa-trash"></span> Deletar</a>
+                                        @endcan
                                         <a href="{{ route($params['main_route'].'.show-password', $item->id) }}" class="btn btn-warning btn-xs"><span class="fas fa-lock"></span> Trocar Senha</a>
                                     </td>
                                 </tr>
