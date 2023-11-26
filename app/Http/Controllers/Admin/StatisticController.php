@@ -40,7 +40,9 @@ class StatisticController extends Controller
         }else{
             $this->selective_process_id = array_key_first($preload['selective_process_id']->toArray());
         }
+
         if($this->selective_process_id){
+            $preload['selective_process']= $this->selective_process_id;
             $data = DB::table('questions as q')
                                 ->select('q.id as question_id', 'q.text as question_text', 'r.id as response_id', 'r.text as response_text', DB::raw('count(sr.optvalue) as count_value'))
                                 ->join('responses as r', function ($join) {
