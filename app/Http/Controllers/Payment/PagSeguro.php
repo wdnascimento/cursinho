@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Payment;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PagSeguro extends Controller
 {
@@ -13,36 +14,36 @@ class PagSeguro extends Controller
     {
         $this->client = new \GuzzleHttp\Client();
     }
-    public function index()
+    public function index(Request $request )
     {
-
+        $request = $request->only('name','mail','cpf','id','tax');
         $response = $this->client->request('POST', 'https://sandbox.api.pagseguro.com/orders', [
             'body' => '{
                 "customer":
                     {
-                        "name":"Jose da Silva",
-                        "email":"email@test.com",
-                        "tax_id":"12345678909"
+                        "name":"'.$request['name'].'",
+                        "email":"'.$request['mail'].'",
+                        "tax_id":"'.$request['cpf'].'"
                     },
                 "reference_id":"0199",
                 "items": [
                     {
-                      "name": "nome do item",
+                      "name": "Inscrição Aluno ." '.$request['id'].',
                       "quantity": 1,
-                      "unit_amount": 500
+                      "unit_amount": '.$request['tax'].'
                     }
                   ],
                   "qr_codes": [
                     {
                       "amount": {
-                        "value": 500
+                        "value": '.$request['tax'].'
                       }
-                      ,"expiration_date":"2023-10-03T20:15:59-03:00"
+                      ,"expiration_date":"2023-12-03T20:15:59-03:00"
                     }
                   ]
             }',
             'headers' => [
-                'Authorization' => 'Bearer B58C13A3616137C664AE1FA4AD9621CB',
+                'Authorization' => 'Bearer 74964B5C438748BD8EC9F636C4DA4A91',
                 'accept' => 'application/json',
                 'content-type' => 'application/json',
             ],
@@ -55,13 +56,17 @@ class PagSeguro extends Controller
     public function pedido($pedido){
         $response = $this->client->request('GET', 'https://sandbox.api.pagseguro.com/orders/'.$pedido, [
             'headers' => [
-                'Authorization' => '09FBF01FF51F41ABB052C150992A4532',
+                'Authorization' => 'Bearer 74964B5C438748BD8EC9F636C4DA4A91',
                 'accept' => 'application/json',
             ],
             ]);
 
-            echo $response->getBody();
+            echo ($response->getBody());
 
+    }
+
+    public function return(Request $request){
+        Log::critical($request);
     }
 
 

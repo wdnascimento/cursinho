@@ -54,6 +54,8 @@ class Student extends Model
             'desc_quota' => 'Cotista',
             'email' => 'E-mail',
             'payment' => 'Pagamento',
+            'register' => 'Data Cadastro',
+            'created_at' => 'Data Inscrição',
         ];
 
     protected $appends = ['desc_specialneed','desc_quota','desc_marital_status', 'desc_nationality' ,'desc_color' ,'desc_sex' ,'desc_time_work'

@@ -161,7 +161,7 @@ class StudentController extends Controller
                 $social_name = (isset($dataForm['social_name'])) ? $dataForm['social_name'] : '';
                 $cpf = (isset($dataForm['cpf'])) ? $dataForm['cpf'] : '';
                 $payment = (isset($dataForm['payment'])) ? $dataForm['payment'] : '';
-                $data = $this->student  ->select('students.*','ssp.payment','u.email as email')
+                $data = $this->student  ->select('students.*','ssp.payment','u.email as email','ssp.created_at as register' )
                                         ->join('student_selective_processes as ssp', function($join) use($payment){
                                             $join->on('ssp.student_id', 'students.id');
                                             $join->where('ssp.selective_process_id', $this->selective_process_id);
@@ -175,7 +175,7 @@ class StudentController extends Controller
                 $searchFields['cpf']= $cpf ;
                 $searchFields['payment']= $payment ;
             }else{
-                $data = $this->student  ->select('students.*','ssp.payment','u.email as email')
+                $data = $this->student  ->select('students.*','ssp.payment','u.email as email','ssp.created_at as register')
                                         ->join('student_selective_processes as ssp', function($join){
                                             $join->on('ssp.student_id', 'students.id');
                                             $join->where('ssp.selective_process_id', $this->selective_process_id);
@@ -472,7 +472,7 @@ class StudentController extends Controller
                 $social_name = (isset($dataForm['social_name'])) ? $dataForm['social_name'] : '';
                 $cpf = (isset($dataForm['cpf'])) ? $dataForm['cpf'] : '';
                 $payment = (isset($dataForm['payment'])) ? $dataForm['payment'] : '';
-                $data = $this->student  ->select('students.*','u.email as email','ssp.payment as payment')
+                $data = $this->student  ->select('students.*','u.email as email','ssp.payment as payment','ssp.created_at as register')
                                         ->join('users as u','u.id','students.user_id')
                                         ->join('student_selective_processes as ssp', function($join) use ($payment){
                                             $join->on('ssp.student_id', 'students.id');
@@ -483,7 +483,7 @@ class StudentController extends Controller
                                         ->where('cpf','LIKE','%'.$cpf.'%')
                                         ->get();
             }else{
-                $data = $this->student  ->select('students.*','u.email as email','ssp.payment as payment')
+                $data = $this->student  ->select('students.*','u.email as email','ssp.payment as payment','ssp.created_at as register')
                                         ->join('users as u','u.id','students.user_id')
                                         ->join('student_selective_processes as ssp', function($join){
                                             $join->on('ssp.student_id', 'students.id');
@@ -509,11 +509,19 @@ class StudentController extends Controller
                     if($row === 1){
                         $sheet->setCellValue($column.$row, $description[$key]);
                         $sheet->getStyle($column.$row)->applyFromArray($this->style['title']);
-                        $sheet->setCellValue($column.($row+1), $value);
+                        if($key === 'created_at' || $key === 'register'){
+                            $sheet->setCellValue($column.($row+1), \Carbon\Carbon::parse($value)->format('d/m/Y'));
+                        }else{
+                            $sheet->setCellValue($column.($row+1), $value);
+                        }
                         $sheet->getStyle($column.($row+1))->applyFromArray($this->style['text']);
                     }else{
-                        $sheet->setCellValue($column.$row, $value);
-                        $sheet->getStyle($column.$row)->applyFromArray($this->style['text']);
+                        if($key == 'created_at' || $key == 'register'){
+                            $sheet->setCellValue($column.($row), \Carbon\Carbon::parse($value)->format('d/m/Y'));
+                        }else{
+                            $sheet->setCellValue($column.($row), $value);
+                        }
+                        $sheet->getStyle($column.($row))->applyFromArray($this->style['text']);
                     }
                     $column++;
                 }

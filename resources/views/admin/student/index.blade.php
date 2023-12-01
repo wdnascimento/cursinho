@@ -96,6 +96,8 @@
 
                                     <th>Qual?</th>
                                     <th>Cotista?</th>
+                                    <th>Cadastro</th>
+                                    <th>Inscrição</th>
                                     @if($preload['notRegistred'] == 0)
                                     <th>Pagamento</th>
                                     <th colspan="4"></th>
@@ -116,6 +118,8 @@
 
                                         <td >{{ (($item['descriptionneed'] != '')? $item['descriptionneed'] :  '-') }}</td>
                                         <td >{{ $item['desc_quota']}}</td>
+                                        <td >{{ \Carbon\Carbon::parse($item['created_at'])->format('d/m/Y')}}</td>
+                                        <td >{{ \Carbon\Carbon::parse($item['register'])->format('d/m/Y')}}</td>
                                         @if($preload['notRegistred'] == 0)
                                         <td id="payment_status_{{ $item['id'] }}" >{{ $item['payment']}}</td>
                                         <td>

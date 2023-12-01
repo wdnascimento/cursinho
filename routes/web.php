@@ -85,10 +85,14 @@ Route::group(['middleware' => 'auth'],function(){
     Route::put('student.update/{id}', [StudentController::class,'update'])->name('student.update');
     Route::put('student.update.two/{id}', [StudentController::class,'updateTwo'])->name('student.update.two');
 
-    Route::get('pix', [PagSeguro::class, 'index'])->name('pix');
-    Route::get('pix/{id}', [PagSeguro::class, 'pedido'])->name('pix');
 
     Route::post('selective_processes', [SelectiveProcessController::class,'store'])->name('selective_processes.store');
+
+
+    // sandbox.
+    Route::get('payment/pix', [PagSeguro::class, 'index'])->name('pix');
+    Route::get('payment/return', [PagSeguro::class, 'return'])->name('payment.return');
+    Route::get('payment/pix/{id}', [PagSeguro::class, 'pedido'])->name('pix');
 });
 
 
