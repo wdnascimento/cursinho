@@ -47,9 +47,12 @@
                     <img src="{{ asset('home/assets/img/logo_horizontal.png'); }}" alt="" srcset="">
                   </a>
                 </h1>
+                @if(isset($data['selective_processes']) && ($data['selective_processes'] !== NULL))
                 <a href="{{ asset('login'); }}" class="get-started-btn">INSCREVA-SE</a>
-
-              </div>
+                @else
+                <a href="{{ asset('ensalamento'); }}" class="get-started-btn">ENSALAMENTOS</a>
+                @endif
+               </div>
             </header><!-- End Header -->
 
             <!-- ======= Hero Section ======= -->

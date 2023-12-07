@@ -28,4 +28,9 @@ class SelectiveProcess extends Model
                     ->Where('enddate','>=',\Carbon\Carbon::today())
                     ->first();
     }
+
+    public function ensalaments()
+    {
+        return $this->hasMany(Ensalament::class, 'selective_process_id');
+    }
 }

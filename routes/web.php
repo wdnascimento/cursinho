@@ -70,8 +70,9 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'],function(){
     Route::get('statistic', [StatisticController::class,'index'])->name('admin.statistic.index');
 });
 
-
+// OPENED
 Route::get('/', [SiteIndexController::class, 'index'])->name('home.index');
+Route::get('/ensalamento', [SiteIndexController::class, 'ensalament'])->name('home.ensalament');
 
 Route::group(['middleware' => 'auth'],function(){
     Route::get('home', [HomeController::class, 'cadastro'])->name('home');

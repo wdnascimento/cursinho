@@ -949,3 +949,22 @@ section {
   color: #fff;
   text-decoration: none;
 }
+
+#ensalament {
+    background: white;
+}
+#ensalament .container {
+    padding-top: 72px;
+  }
+
+  @media (max-width: 992px) {
+    #ensalament .container {
+      padding-top: 62px;
+    }
+  }
+
+#ensalament h1 {
+    font-size: 28px;
+    line-height: 36px;
+    color: #0F1E5F;
+  }
