@@ -390,7 +390,11 @@
                         <div class="col-xs-12 px-2 col-sm-6 col-md-4 col-lg-4 justify-content-center">
                             <h2 class="w-100 text-center text-white py-3">INSCREVA-SE NO PROCESSO SELETIVO</h2>
                             <h2 class="w-100 text-center">
-                                <a href="{{ asset('login'); }}" class="get-started-btn-bg">INSCREVA-SE</a>
+                                @if(isset($data['selective_processes']) && ($data['selective_processes'] !== NULL))
+                                <a href="{{ asset('login'); }}" class="get-started-btn">INSCREVA-SE</a>
+                                @else
+                                <a href="{{ asset('ensalamento'); }}" class="get-started-btn">ENSALAMENTOS</a>
+                                @endif
                             </h2>
                         </div>
                     </div>
