@@ -50,7 +50,7 @@
                 @if(isset($data['selective_processes']) && ($data['selective_processes'] !== NULL))
                 <a href="{{ asset('login'); }}" class="get-started-btn">INSCREVA-SE</a>
                 @else
-                <a href="{{ asset('ensalamento'); }}" class="get-started-btn">ENSALAMENTOS</a>
+                <a href="{{ asset('ensalamento'); }}" class="get-started-btn">RESULTADOS</a>
                 @endif
               </div>
             </header><!-- End Header -->
@@ -65,7 +65,7 @@
                   <div class="row">
                         <div class="col-12">
 
-                            <h1>ENSALAMENTOS</h1>
+                            <h1>RESULTADOS</h1>
                             <hr class="pb-2">
 
                             @if(isset($data['ensalaments']) && count(['ensalaments']))
