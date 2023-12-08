@@ -50,7 +50,7 @@
                 @if(isset($data['selective_processes']) && ($data['selective_processes'] !== NULL))
                 <a href="{{ asset('login'); }}" class="get-started-btn">INSCREVA-SE</a>
                 @else
-                <a href="{{ asset('ensalamento'); }}" class="get-started-btn">ENSALAMENTOS</a>
+                <a href="{{ asset('ensalamento'); }}" class="get-started-btn">RESULTADOS</a>
                 @endif
                </div>
             </header><!-- End Header -->
@@ -393,7 +393,7 @@
                                 @if(isset($data['selective_processes']) && ($data['selective_processes'] !== NULL))
                                 <a href="{{ asset('login'); }}" class="get-started-btn">INSCREVA-SE</a>
                                 @else
-                                <a href="{{ asset('ensalamento'); }}" class="get-started-btn">ENSALAMENTOS</a>
+                                <a href="{{ asset('ensalamento'); }}" class="get-started-btn">RESULTADOS</a>
                                 @endif
                             </h2>
                         </div>

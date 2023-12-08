@@ -72,7 +72,7 @@
                                 @foreach ($data['ensalaments'] as $item)
                                     <h2 class="w-100 d-flex justify-content-center">Processo: {{ $item->title }} /
                                             {{ \Carbon\Carbon::parse($item['startdate'])->format('d/m/Y')}} -
-                                            {{ \Carbon\Carbon::parse($item['startdate'])->format('d/m/Y')}}
+                                            {{ \Carbon\Carbon::parse($item['enddate'])->format('d/m/Y')}}
                                     </h2>
                                     <hr>
                                     @if(isset($item['ensalaments']) && count($item['ensalaments']))
@@ -88,7 +88,6 @@
                                     Nenhuma informação cadastrada.
                                 </div>
                             @endif
-
                         </div>
                         <div class="col-12 py-2 pt-4 d-flex justify-content-end">
                             <a href="{{ asset(''); }}" class="get-started-btn">VOLTAR</a>
