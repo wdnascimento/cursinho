@@ -121,7 +121,6 @@ p{
   white-space: nowrap;
   transition: 0.3s;
   font-size: 14px;
-  display: inline-block;
 }
 
 .get-started-btn:hover {
@@ -435,7 +434,6 @@ p{
     font-weight: 500;
   font-size: 15px;
   letter-spacing: 1px;
-  display: inline-block;
   padding: 10px 35px;
   border-radius: 50px;
   transition: 0.5s;

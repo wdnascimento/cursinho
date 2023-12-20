@@ -63,22 +63,23 @@
               <section id="ensalament" >
                 <div class="container" data-aos="fade-up">
                   <div class="row">
-                        <div class="col-12">
 
                             <h1>RESULTADOS</h1>
                             <hr class="pb-2">
 
                             @if(isset($data['ensalaments']) && count(['ensalaments']))
                                 @foreach ($data['ensalaments'] as $item)
-                                    <h2 class="w-100 d-flex justify-content-center">Processo: {{ $item->title }}
-                                    </h2>
-                                    <hr>
                                     @if(isset($item['ensalaments']) && count($item['ensalaments']))
-                                    <div class="col-12 py-3 d-flex justify-content-center">
-                                        @foreach ($item['ensalaments'] as $ensalament)
-                                        <a href="{{ asset($ensalament['url']) }}" class="get-started-btn">{{ $ensalament['title'] }}</a>
-                                        @endforeach
-                                    </div>
+                                        <h2 class="w-100 d-flex justify-content-center">Processo: {{ $item->title }}
+                                        </h2>
+                                        <hr>
+                                        <div class="row py-3 d-flex justify-content-between">
+                                            @foreach ($item['ensalaments'] as $ensalament)
+                                            <div class="d-flex pt-2 col-sm-12 col-md-6 col-lg-6  justify-content-center">
+                                                <a href="{{ asset($ensalament['url']) }}" class="get-started-btn">{{ $ensalament['title'] }}</a>
+                                            </div>
+                                            @endforeach
+                                        </div>
                                     @endif
                                 @endforeach
                             @else
@@ -86,11 +87,13 @@
                                     Nenhuma informação cadastrada.
                                 </div>
                             @endif
-                        </div>
-                        <div class="col-12 py-2 pt-4 d-flex justify-content-end">
-                            <a href="{{ asset(''); }}" class="get-started-btn">VOLTAR</a>
-                        </div>
+
                   </div>
+                    <div class="py-2 pt-4 d-flex justify-content-end">
+                        <div class="d-flex ">
+                            <a href="{{ asset(''); }}" class="get-started-btn d-flex">VOLTAR</a>
+                        </div>
+                    </div>
                 </div>
               </section><!-- End Cource Details Section -->
 
