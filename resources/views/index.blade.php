@@ -299,17 +299,17 @@
                               </p>
                               <p  style="text-align: justify;">
                                 <h5>Qual será o local da prova?</h5>
-                                A prova será realizada NO CURSO POSITIVO VICENTE MACHADO, situada na Avenida Vicente Machado,317 - Centro, Curitiba – Paraná no dia 09 DE DEZEMBRO DE 2024, a partir das 19h00.
-                                Os portões serão fechados às 18h30min., não esqueça de levar um documento de identificação com foto, caneta esferográfica preta e seu comprovante de inscrição.
+                                A prova será realizada NO CURSO POSITIVO VICENTE MACHADO, situada na Avenida Vicente Machado,317 - Centro, Curitiba – Paraná, em data e horário divulgada no manual do candidato
+                                Não esqueça de levar um documento de identificação com foto, caneta esferográfica preta e seu comprovante de inscrição.
                               </p>
                               <p  style="text-align: justify;">
                                 <h5>Quando sairá o ensalamento?</h5>
-                                  O ensalamento será divulgado no site www.cursinhosolidario.org.br até o dia 29 DE JANEIRO DE 2024. Ele também estará disponível no espaço do candidato.
+                                  O ensalamento será divulgado neste site. Ele também estará disponível no espaço do candidato.
                                   Se seu nome não constar na lista do ensalamento, entre em contato com a gente:
                               </p>
                               <p  style="text-align: justify;">
                                 <h5>Quando será a entrevista?</h5>
-                                  As entrevistas acontecerão na sede do Positivo Vicente Machado, localizada na Av. Vicente Machado, 317 - Centro, Curitiba-PR, entre os dia 13 à 16 de DEZEMBRO DE 2023.
+                                  As entrevistas acontecerão na sede do Positivo Vicente Machado, localizada na Av. Vicente Machado, 317 - Centro, Curitiba-PR, em data divulgada no manual do candidato.
                                   Para a entrevista o candidato precisa levar CÓPIAS E ORIGINAIS dos seguintes documentos:
                                   <br>
                                   <ul>
