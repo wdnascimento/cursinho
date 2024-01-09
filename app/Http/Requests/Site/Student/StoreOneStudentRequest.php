@@ -17,7 +17,7 @@ class StoreOneStudentRequest extends FormRequest
             // id, user_id, cpf, social_name, rg,  marital_status, nationality, color, birthdate, birthcity
             'cpf' => 'required|cpf|unique:students,cpf,'.$this->id,
             // 'user_id' => 'required',
-            'social_name' => 'required',
+            'social_name' => 'required|regex:/^[a-zA-Z\u00C0-\u017F´]+\s+[a-zA-Z\u00C0-\u017F´]+.*$/',
             'rg' => 'required',
             'marital_status' => 'required',
             'nationality' => 'required',
@@ -62,6 +62,7 @@ class StoreOneStudentRequest extends FormRequest
 
             'user_id.required' =>'O campo :attribute é de preenchimento obrigatório!',
             'social_name.required' =>'O campo :attribute é de preenchimento obrigatório!',
+            'social_name.regex' => 'O campo :attribute deve conter nome e sobrenome!',
             'rg.required' =>'O campo :attribute é de preenchimento obrigatório!',
             'marital_status.required' =>'O campo :attribute é de preenchimento obrigatório!',
             'nationality.required' =>'O campo :attribute é de preenchimento obrigatório!',
@@ -103,7 +104,7 @@ class StoreOneStudentRequest extends FormRequest
             // id, user_id, cpf, social_name, rg,  marital_status, nationality, color, birthdate, birthcity
             'cpf' => 'CPF',
             'user_id' => 'Usuário',
-            'social_name' => 'Nome Social',
+            'social_name' => 'Nome Completo',
             'rg' => 'RG',
             'marital_status' => 'Estado Civíl',
             'nationality' => 'Nacionalidade',

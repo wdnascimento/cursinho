@@ -12,8 +12,8 @@
                     <h3>Dados Pessoais</h3>
                 </div>
                 <div class="form-group col-12 col-md-6 col-lg-8">
-                    <label for="social_name">Nome Social</label>
-                    <x-form-input name="social_name" placeholder="Nome Social"/>
+                    <label for="social_name">Nome Completo</label>
+                    <x-form-input name="social_name" placeholder="Nome Completo"/>
                 </div>
                 <div class="form-group col-12 col-md-6 col-lg-4">
                     <label for="cpf">CPF</label>
