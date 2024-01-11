@@ -92,7 +92,7 @@
                         </div>
                         @if( isset($data->terms))
                         <div class="form-group">
-                            <a href="{{ asset('storage/'.$data->terms); }}" target="_blank">Instruções</a>
+                            <a href="{{ asset('storage/'.$data->terms); }}" target="_blank">Termos</a>
                         </div>
                         @endif
                         <div class="form-group col-12 col-md-12 col-lg-12 pt-2">
