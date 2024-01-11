@@ -17,7 +17,7 @@ class IndexController extends Controller
 
     public function index()
     {
-        $data = $this->selective_process->current();
+        $data['selective_processes'] = $this->selective_process->current();
         return view('index', compact('data'));
     }
 

@@ -24,7 +24,7 @@ class SelectiveProcess extends Model
     }
 
     public function current(){
-        return $this->where('startdate','<=',\Carbon\Carbon::today())
+        return $this->where('startdaete','<=',\Carbon\Carbon::today())
                     ->Where('enddate','>=',\Carbon\Carbon::today())
                     ->first();
     }
