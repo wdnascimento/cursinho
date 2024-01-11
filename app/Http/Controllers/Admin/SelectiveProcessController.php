@@ -60,27 +60,37 @@ class SelectiveProcessController extends Controller
     public function store(SelectiveProcessInsertRequest $request)
     {
 
-        if($request->hasFile('instructionurl')) {
-            $fileName = date('YmdHis').'.'.$request->file('instructionurl')->getClientOriginalExtension();
-            $filePath = $request->file('instructionurl')->storeAs('uploads', $fileName,'public');
-
-            $dataForm = $request->all();
-            $dataForm['instructionurl'] = $filePath;
-
-            $dataForm['taxvalue'] = number_format(str_replace(",", ".",str_replace(".", "",$dataForm['taxvalue'])), 2, '.', '');
-
-
-            // id, year, title, startdate, enddate, extramessage, instructionurl, terms, paymentfinaldate, taxvalue
-
-            $insert = $this->selective_process->create($dataForm);
-            if($insert){
-                return redirect()->route($this->params['main_route'].'.index');
+        if(! $request->hasFile('instructionurl')) {
+            return redirect()->route($this->params['main_route'].'.create')->withErrors(['Falha ao carregar o arquivo.']);
+        }else{
+            if(! $request->hasFile('terms')) {
+                return redirect()->route($this->params['main_route'].'.create')->withErrors(['Falha ao carregar o arquivo.']);
             }else{
-                return redirect()->route($this->params['main_route'].'.create')->withErrors(['Falha ao fazer Inserir.']);
+                $fileName = date('YmdHis').'.'.$request->file('instructionurl')->getClientOriginalExtension();
+                $filePath = $request->file('instructionurl')->storeAs('uploads', $fileName,'public');
+
+                $dataForm = $request->all();
+                $dataForm['instructionurl'] = $filePath;
+
+                $fileName = date('YmdHis').'.'.$request->file('terms')->getClientOriginalExtension();
+                $filePath = $request->file('terms')->storeAs('uploads', $fileName,'public');
+
+                $dataForm = $request->all();
+                $dataForm['terms'] = $filePath;
+
+                $dataForm['taxvalue'] = number_format(str_replace(",", ".",str_replace(".", "",$dataForm['taxvalue'])), 2, '.', '');
+
+
+                // id, year, title, startdate, enddate, extramessage, instructionurl, terms, paymentfinaldate, taxvalue
+
+                $insert = $this->selective_process->create($dataForm);
+                if($insert){
+                    return redirect()->route($this->params['main_route'].'.index');
+                }else{
+                    return redirect()->route($this->params['main_route'].'.create')->withErrors(['Falha ao fazer Inserir.']);
+                }
             }
 
-        }else{
-            return redirect()->route($this->params['main_route'].'.create')->withErrors(['Falha ao carregar o arquivo.']);
         }
     }
 
@@ -120,8 +130,19 @@ class SelectiveProcessController extends Controller
             } else {
                 echo "File not found.";
             }
+        }
 
-
+        if($request->hasFile('terms')) {
+            $fileName = date('YmdHis').'.'.$request->file('terms')->getClientOriginalExtension();
+            $filePath = $request->file('terms')->storeAs('uploads', $fileName,'public');
+            $dataForm['terms'] = $filePath;
+            if (Storage::exists('public/'.$data['terms'])) {
+                // Delete the file
+                Storage::delete('public/'.$data['terms']);
+                echo "File deleted successfully.";
+            } else {
+                echo "File not found.";
+            }
         }
 
         if($data->update($dataForm)){
