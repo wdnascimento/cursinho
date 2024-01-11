@@ -86,6 +86,15 @@
                             <a href="{{ asset('storage/'.$data->instructionurl); }}" target="_blank">Instruções</a>
                         </div>
                         @endif
+                        <div class="form-group col-12">
+                            {{Form::label('terms', 'Arquivo de Termos de Uso')}}
+                            {{Form::file('terms',null,['class' => 'form-control','width' => '150', 'placeholder' => 'Termos'])}}
+                        </div>
+                        @if( isset($data->terms))
+                        <div class="form-group">
+                            <a href="{{ asset('storage/'.$data->terms); }}" target="_blank">Instruções</a>
+                        </div>
+                        @endif
                         <div class="form-group col-12 col-md-12 col-lg-12 pt-2">
                             {{Form::submit('Salvar',['class'=>'btn btn-success btn-sm'])}}
                         </div>

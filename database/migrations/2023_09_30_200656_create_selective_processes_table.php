@@ -19,7 +19,7 @@ class CreateSelectiveProcessesTable extends Migration
             $table->string('title');
             $table->date('startdate');
             $table->date('enddate');
-            $table->text('extramessage');
+            $table->text('extramessage')->nullable();
             $table->string('instructionurl');
             $table->string('terms');
             $table->decimal('taxvalue',10,2);
