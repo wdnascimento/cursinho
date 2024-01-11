@@ -16,7 +16,7 @@
                 <h5>
                 </h5>
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item w-100 vh-100"  src="{{ asset($data['selective_processes']->instructionurl) }}"  allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item w-100 vh-100"  src="{{ asset('storage/'.$data['selective_processes']->instructionurl) }}"  allowfullscreen></iframe>
                 </div>
                 @if ($data['student_responses']->count())
                     <x-form :action="route('selective_processes.store')" id="form-student" method="post">
@@ -88,7 +88,7 @@
                                 <strong>STATUS DO PAGAMENTO: </strong> {{  $item->payment }}
                             </h6>
                             <h6 class="w-100  text-center">
-                                <a class="btn btn-sm btn-primary" href="{{ asset($data['selective_processes']->instructionurl) }}">LINK DO EDITAL</a>
+                                <a class="btn btn-sm btn-primary" href="{{ asset('storage/'.$data['selective_processes']->instructionurl) }}">LINK DO EDITAL</a>
                             </h6>
                         </div>
 
