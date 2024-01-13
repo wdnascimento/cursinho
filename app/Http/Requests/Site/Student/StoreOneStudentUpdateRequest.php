@@ -17,7 +17,7 @@ class StoreOneStudentUpdateRequest extends FormRequest
             // id, user_id, cpf, social_name, rg,  marital_status, nationality, color, birthdate, birthcity
             'cpf' => 'required|cpf|unique:students,cpf,'.$this->id,
             // 'user_id' => 'required',
-            'social_name' => 'required|regex:/^[a-zA-Z\u00C0-\u017F´]+\s+[a-zA-Z\u00C0-\u017F´]+.*$/',
+            'social_name' => 'required|regex:/^(.*)\s(.*)+.*$/',
             'rg' => 'required',
             'marital_status' => 'required',
             'nationality' => 'required',
