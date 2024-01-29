@@ -20,7 +20,7 @@ class Student extends Model
 
     public $desc_fill =
         [
-            'id' => 'Nº Inscrição',
+            'student_selective_process_id' => 'Nº Inscrição',
             'social_name' => 'Nome Social',
             'rg' => 'RG',
             'cpf' => 'CPF',

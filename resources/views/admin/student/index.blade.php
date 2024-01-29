@@ -107,7 +107,13 @@
                             <tbody>
                                 @foreach ($data as $item)
                                     <tr>
-                                        <td >{{ $item['id']}}</td>
+                                        @if(isset($item['student_selective_process_id']))
+                                        <td >
+                                            {{ $item['student_selective_process_id'] }}
+                                        </td>
+                                        @else
+                                        <td > - </td>
+                                        @endif
                                         <td >{{ $item['cpf']}}</td>
                                         <td >{{ $item['social_name']}}</td>
 

@@ -161,7 +161,7 @@ class StudentController extends Controller
                 $social_name = (isset($dataForm['social_name'])) ? $dataForm['social_name'] : '';
                 $cpf = (isset($dataForm['cpf'])) ? $dataForm['cpf'] : '';
                 $payment = (isset($dataForm['payment'])) ? $dataForm['payment'] : '';
-                $data = $this->student  ->select('students.*','ssp.payment','u.email as email','ssp.created_at as register' )
+                $data = $this->student  ->select('students.*','ssp.payment', 'ssp.id as student_selective_process_id' ,'u.email as email','ssp.created_at as register' )
                                         ->join('student_selective_processes as ssp', function($join) use($payment){
                                             $join->on('ssp.student_id', 'students.id');
                                             $join->where('ssp.selective_process_id', $this->selective_process_id);
@@ -175,7 +175,7 @@ class StudentController extends Controller
                 $searchFields['cpf']= $cpf ;
                 $searchFields['payment']= $payment ;
             }else{
-                $data = $this->student  ->select('students.*','ssp.payment','u.email as email','ssp.created_at as register')
+                $data = $this->student  ->select('students.*','ssp.payment', 'ssp.id as student_selective_process_id' ,'u.email as email','ssp.created_at as register')
                                         ->join('student_selective_processes as ssp', function($join){
                                             $join->on('ssp.student_id', 'students.id');
                                             $join->where('ssp.selective_process_id', $this->selective_process_id);
@@ -472,7 +472,7 @@ class StudentController extends Controller
                 $social_name = (isset($dataForm['social_name'])) ? $dataForm['social_name'] : '';
                 $cpf = (isset($dataForm['cpf'])) ? $dataForm['cpf'] : '';
                 $payment = (isset($dataForm['payment'])) ? $dataForm['payment'] : '';
-                $data = $this->student  ->select('students.*','u.email as email','ssp.payment as payment','ssp.created_at as register')
+                $data = $this->student  ->select('students.*','u.email as email','ssp.payment as payment' ,'ssp.id as student_selective_process_id','ssp.created_at as register')
                                         ->join('users as u','u.id','students.user_id')
                                         ->join('student_selective_processes as ssp', function($join) use ($payment){
                                             $join->on('ssp.student_id', 'students.id');
@@ -483,7 +483,7 @@ class StudentController extends Controller
                                         ->where('cpf','LIKE','%'.$cpf.'%')
                                         ->get();
             }else{
-                $data = $this->student  ->select('students.*','u.email as email','ssp.payment as payment','ssp.created_at as register')
+                $data = $this->student  ->select('students.*','u.email as email','ssp.payment as payment','ssp.id as student_selective_process_id','ssp.created_at as register')
                                         ->join('users as u','u.id','students.user_id')
                                         ->join('student_selective_processes as ssp', function($join){
                                             $join->on('ssp.student_id', 'students.id');
