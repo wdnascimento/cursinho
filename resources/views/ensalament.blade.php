@@ -89,7 +89,7 @@
                                                     <tr>
                                                         <td>{{ $ensalament['title'] }}</td>
                                                         <td class="text-center">{{ \Carbon\Carbon::parse($ensalament['created_at'])->format('d/m/Y') }}</td>
-                                                        <td class="d-flex justify-content-end"><a href="{{ asset('storage/'.$item->url)}}" class="btn btn-primary btn-sm active" target="_blank" role="button" aria-pressed="true"><span class="fas fa-download"></span></a></td>
+                                                        <td class="d-flex justify-content-end"><a href="{{ asset('storage/'.$ensalament['url'])}}" class="btn btn-primary btn-sm active" target="_blank" role="button" aria-pressed="true"><span class="fas fa-download"></span></a></td>
                                                     </tr>
                                                     @endforeach
                                                     </tbody>
