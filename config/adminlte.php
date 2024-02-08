@@ -321,12 +321,28 @@ return [
             'label_color' => 'success',
         ],
 
+        [
+            'text'        => 'Pré Cadastros',
+            'url'         => 'admin/lead',
+            'icon'        => 'fas fa-newspaper',
+            // 'label'       => 4,
+            'label_color' => 'success',
+        ],
+
 
         ['header' => 'system_settings'],
             [
                 'text'        => 'Processos',
                 'url'         => 'admin/selective_process',
                 'icon'        => 'fas fa-filter',
+                // 'label'       => 4,
+                'label_color' => 'success',
+            ],
+
+            [
+                'text'        => 'Arquivos',
+                'url'         => 'admin/ensalament',
+                'icon'        => 'fas fa-file',
                 // 'label'       => 4,
                 'label_color' => 'success',
             ],

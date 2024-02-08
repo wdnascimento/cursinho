@@ -29,5 +29,13 @@ class IndexController extends Controller
         return view('ensalament', compact('data'));
     }
 
+    public function leads()
+    {
+        $data['ensalaments'] = $this->selective_process->with('ensalaments')->get();
+        $data['selective_processes'] = $this->selective_process->current();
+
+        return view('lead', compact('data'));
+    }
+
 
 }

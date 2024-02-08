@@ -396,6 +396,15 @@ p{
   background-repeat: no-repeat;
 }
 
+#hero-internal {
+    width: 100%;
+    height: 30vh;
+    background: url("../img/hero-bg.jpg") top left;
+    background-size: cover;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
 #hero:before {
   content: "";
   background: rgba(0, 0, 0, 0.4);
@@ -451,8 +460,14 @@ p{
   #hero {
     background-attachment: fixed;
     height: 120vh;
-
   }
+
+  #hero-internal {
+    background-attachment: fixed;
+    height: 50vh;
+  }
+
+
 
 }
 

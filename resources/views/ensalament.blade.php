@@ -28,6 +28,8 @@
     <link href="{{ asset('home/assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('home/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('home/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('home/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('home/assets/vendor/fontawesome/css/all.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('home/assets/css/style.css') }}" rel="stylesheet">
@@ -55,45 +57,62 @@
               </div>
             </header><!-- End Header -->
 
+            <!-- ======= Hero Section ======= -->
+            <section id="hero-internal" class="d-flex justify-content-center align-items-center">
 
+            </section><!-- End Hero -->
 
             <main id="main">
 
               <!-- ======= Cource Details Section ======= -->
-              <section id="ensalament" >
+              <section id="ensalament" class="p-0" >
                 <div class="container" data-aos="fade-up">
-                  <div class="row">
-
+                    <div class="row">
                             <h1>RESULTADOS</h1>
                             <hr class="pb-2">
-
-                            @if(isset($data['ensalaments']) && count(['ensalaments']))
-                                @foreach ($data['ensalaments'] as $item)
-                                    @if(isset($item['ensalaments']) && count($item['ensalaments']))
-                                        <h2 class="w-100 d-flex justify-content-center">Processo: {{ $item->title }}
-                                        </h2>
-                                        <hr>
-                                        <div class="row py-3 d-flex justify-content-between">
-                                            @foreach ($item['ensalaments'] as $ensalament)
-                                            <div class="d-flex pt-2 col-sm-12 col-md-6 col-lg-6  justify-content-center">
-                                                <a href="{{ asset($ensalament['url']) }}" class="get-started-btn">{{ $ensalament['title'] }}</a>
+                            <div class="col-12">
+                                @if(isset($data['ensalaments']) && count(['ensalaments']))
+                                    @foreach ($data['ensalaments'] as $item)
+                                        @if(isset($item['ensalaments']) && count($item['ensalaments']))
+                                            <h2 class="w-100 d-flex justify-content-center">Processo: {{ $item->title }}</h2>
+                                            <div class="table-responsive">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Arquivo</th>
+                                                            <th scope="col" class="text-center">Data</th>
+                                                            <th scope="col" class="d-flex justify-content-end">Baixar</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach ($item['ensalaments'] as $ensalament)
+                                                    <tr>
+                                                        <td>{{ $ensalament['title'] }}</td>
+                                                        <td class="text-center">{{ \Carbon\Carbon::parse($ensalament['created_at'])->format('d/m/Y') }}</td>
+                                                        <td class="d-flex justify-content-end"><a href="{{ asset('storage/'.$item->url)}}" class="btn btn-primary btn-sm active" target="_blank" role="button" aria-pressed="true"><span class="fas fa-download"></span></a></td>
+                                                    </tr>
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
                                             </div>
-                                            @endforeach
-                                        </div>
-                                    @endif
-                                @endforeach
+                                        @endif
+                                    @endforeach
                             @else
                                 <div class="alert alert-success m-2" role="alert">
                                     Nenhuma informação cadastrada.
                                 </div>
                             @endif
 
-                  </div>
-                    <div class="py-2 pt-4 d-flex justify-content-end">
-                        <div class="d-flex ">
-                            <a href="{{ asset(''); }}" class="get-started-btn d-flex">VOLTAR</a>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 py-4 d-flex align-items-center">
+                            <a href="{{ asset('precadastro'); }}" class="get-started-btn">PRÉ CADASTRO</a>
+                        </div>
+                        <div class="col-6 py-4 pt-4 d-flex align-items-center justify-content-end">
+                                <a href="{{ asset(''); }}" class="get-started-btn d-flex">VOLTAR</a>
                         </div>
                     </div>
+
                 </div>
               </section><!-- End Cource Details Section -->
 

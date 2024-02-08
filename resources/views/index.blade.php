@@ -383,6 +383,7 @@
                                 @if(isset($data['selective_processes']) && ($data['selective_processes'] !== NULL))
                                 <a href="{{ asset('login'); }}" class="get-started-btn">INSCREVA-SE</a>
                                 @else
+                                <a href="{{ asset('precadastro'); }}" class="get-started-btn">PRÉ CADASTRO</a>
                                 <a href="{{ asset('ensalamento'); }}" class="get-started-btn">RESULTADOS</a>
                                 @endif
                             </h2>
