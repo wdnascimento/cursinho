@@ -111,5 +111,6 @@ Route::group(['middleware' => 'auth'],function(){
 Route::get('payment/pix', [PagSeguro::class, 'index'])->name('pix');
 Route::get('payment/return', [PagSeguro::class, 'return'])->name('payment.return');
 Route::get('payment/pix/{id}', [PagSeguro::class, 'pedido'])->name('pix');
+Route::get('payment/pay/{id}', [PagSeguro::class, 'pay'])->name('payment.pay');
 
 // routes/web.php
