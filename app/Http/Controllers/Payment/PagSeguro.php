@@ -16,7 +16,7 @@ class PagSeguro extends Controller
     public function __construct()
     {
         $this->token = env('PAGSEGURO_TOKEN','02ddf059-cffb-4f9b-8971-32de1e6d250fd1af6f344e1a8bd4c8257c8ac0d6787a5aa2-5f5b-4d43-be4f-7a56c1c201cc');
-        $this->endpoint = 'https://api.pagseguro.uol.com.br';
+        $this->endpoint = 'https://api.pagseguro.com';
     }
 
     // public function index(Request $request )
