@@ -10,10 +10,10 @@
 
 <body>
     @if ($data)
+    @dd($data)
     <img src="{{ $data['qr_codes'][0]['links'][0]['href'] }}" alt="">
     <span>{{ $data['qr_codes'][0]['id'] }}</span>
     @endif
-    @dd($data)
 </body>
 
 </html>
