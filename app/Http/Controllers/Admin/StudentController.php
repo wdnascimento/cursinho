@@ -327,13 +327,13 @@ class StudentController extends Controller
 
         // GET REGISTRATION ID
         $registration = new StudentSelectiveProcess();
-        $data['registration_id'] = $registration->hasRegistration($selective_process_id,$student_id);
+        $registration_id = $registration->hasRegistration($selective_process_id,$student_id);
 
 
         // Adicione seus dados ao objeto $sheet
         $sheet->mergeCells('A1:B1');
         $sheet->getStyle('A1:B1')->applyFromArray($this->style['head']);
-        $sheet->setCellValue('A1', $selective_process['title'].' - ALUNO: '.$data['registration_id'].' - '.$student['social_name']);
+        $sheet->setCellValue('A1', $selective_process['title'].' - ALUNO: '.$registration_id.' - '.$student['social_name']);
         $sheet->setCellValue('A2', 'Pergunta');
         $sheet->getStyle('A2')->applyFromArray($this->style['title']);
         $sheet->setCellValue('B2', 'Resposta');
@@ -452,7 +452,7 @@ class StudentController extends Controller
         }
 
         $writer = new Xlsx($spreadsheet);
-        $filename = 'INSCRICAO_'.$data['registration_id'].'.xlsx';
+        $filename = 'INSCRICAO_'.$registration_id.'.xlsx';
 
         // Cabeçalhos para definir o tipo de conteúdo e o nome do arquivo
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
