@@ -26,4 +26,9 @@ class StudentSelectiveProcess extends Model
     {
         return $this->hasMany(PaymentLog::class)->orderBy('date','desc');
     }
+
+    public function hasRegistration($selective_process_id, $student_id){
+        $tmp = $this->select('id')->where('student_id',$student_id)->where('selective_process_id', $selective_process_id)->first();
+        return ($tmp) ? $tmp['id'] : NULL;
+    }
 }

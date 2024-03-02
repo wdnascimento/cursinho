@@ -272,6 +272,10 @@ class StudentController extends Controller
 
         $data['student'] = $this->student->where('id',$student_id)->first();
 
+        // GET REGISTRATION ID
+        $registration = new StudentSelectiveProcess();
+        $data['registration_id'] = $registration->hasRegistration($selective_process_id,$student_id);
+
         $data['selective_processes'] = $this->selective_process->find($selective_process_id);
         return view('admin._global.print',compact('data','preload'));
         // return PDF::loadView('admin._global.print',compact('data'))->setPaper('A4', 'portrait')->download('inscricao.pdf','_blank');
@@ -287,6 +291,7 @@ class StudentController extends Controller
                             ->where('student_id',$student_id)
                             ->where('selective_process_id',$selective_process_id)
                             ->get();
+        $tmp = [];
         foreach($data as $i => $v){
             $tmp[$v['response_id']]['textvalue']= $v['textvalue'];
             $tmp[$v['response_id']]['optvalue']= $v['optvalue'];
@@ -300,6 +305,11 @@ class StudentController extends Controller
         $data['student'] = $this->student->where('id',$student_id)->first();
 
         $data['selective_processes'] = $this->selective_process->find($selective_process_id);
+
+        // GET REGISTRATION ID
+        $registration = new StudentSelectiveProcess();
+        $data['registration_id'] = $registration->hasRegistration($selective_process_id,$student_id);
+
         return view('admin._global.smallprint',compact('data','preload'));
         // return PDF::loadView('admin._global.smallprint',compact('data'))->setPaper('A4', 'portrait')->download('inscricao.pdf','_blank');
     }
@@ -315,10 +325,15 @@ class StudentController extends Controller
         $selective_processes = new SelectiveProcess();
         $selective_process= $selective_processes->find($selective_process_id)->toArray();
 
+        // GET REGISTRATION ID
+        $registration = new StudentSelectiveProcess();
+        $data['registration_id'] = $registration->hasRegistration($selective_process_id,$student_id);
+
+
         // Adicione seus dados ao objeto $sheet
         $sheet->mergeCells('A1:B1');
         $sheet->getStyle('A1:B1')->applyFromArray($this->style['head']);
-        $sheet->setCellValue('A1', $selective_process['title'].' - ALUNO: '.$student['id'].' - '.$student['social_name']);
+        $sheet->setCellValue('A1', $selective_process['title'].' - ALUNO: '.$data['registration_id'].' - '.$student['social_name']);
         $sheet->setCellValue('A2', 'Pergunta');
         $sheet->getStyle('A2')->applyFromArray($this->style['title']);
         $sheet->setCellValue('B2', 'Resposta');

@@ -51,7 +51,7 @@
 <body class="container max-size pt-4">
         <div class="row">
             <div class="col-12 pt-1">
-                <h3 ><strong>{{ $data['selective_processes']->title}} - Inscrição Nº {{ $data['student']['id'] }}</strong></h3>
+                <h3 ><strong>{{ $data['selective_processes']->title}} - Inscrição Nº {{ $data['registration_id'] }}</strong></h3>
                 <hr class="m-0 mb-1">
             </div>
             <div class="col-3">

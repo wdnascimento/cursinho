@@ -40,19 +40,7 @@
             <script src="https://www.google.com/recaptcha/api.js" async defer></script>
             <!-- ======= Header ======= -->
             <header id="header" class="fixed-top">
-              <div class="container d-flex align-items-center">
-
-                <h1 class="logo me-auto">
-                  <a href="{{ asset(''); }}">
-                    <img src="{{ asset('home/assets/img/logo_horizontal.png'); }}" alt="" srcset="">
-                  </a>
-                </h1>
-                @if(isset($data['selective_processes']) && ($data['selective_processes'] !== NULL))
-                <a href="{{ asset('login'); }}" class="get-started-btn">INSCREVA-SE</a>
-                @else
-                <a href="{{ asset('ensalamento'); }}" class="get-started-btn">RESULTADOS</a>
-                @endif
-              </div>
+                @include('site.layouts.header');
             </header><!-- End Header -->
 
             <!-- ======= Hero Section ======= -->

@@ -39,7 +39,7 @@
 <body class="container pt-4">
         <div class="row">
             <div class="col-12 py-3">
-                <h3 ><strong>{{ $data['selective_processes']->title}} - Inscrição Nº {{ $data['student']['id'] }}</strong></h3>
+                <h3 ><strong>{{ $data['selective_processes']->title}} - Inscrição Nº {{ $data['registration_id'] }}</strong></h3>
                 <hr>
             </div>
             <div class="col-4">

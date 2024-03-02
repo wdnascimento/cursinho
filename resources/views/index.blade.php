@@ -23,7 +23,11 @@
     <!-- Vendor CSS Files -->
     <link href="{{ asset('home/assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('home/assets/vendor/aos/aos.css') }}" rel="stylesheet">
-    <link href="{{ asset('home/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+
     <link href="{{ asset('home/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('home/assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('home/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
@@ -37,23 +41,8 @@
 <body>
     <main >
         <body>
+            @include('site.layouts.header');
 
-            <!-- ======= Header ======= -->
-            <header id="header" class="fixed-top">
-              <div class="container d-flex align-items-center">
-
-                <h1 class="logo me-auto">
-                  <a href="{{ asset(''); }}">
-                    <img src="{{ asset('home/assets/img/logo_horizontal.png'); }}" alt="" srcset="">
-                  </a>
-                </h1>
-                @if(isset($data['selective_processes']) && ($data['selective_processes'] !== NULL))
-                <a href="{{ asset('login'); }}" class="get-started-btn">INSCREVA-SE</a>
-                @else
-                <a href="{{ asset('ensalamento'); }}" class="get-started-btn">RESULTADOS</a>
-                @endif
-               </div>
-            </header><!-- End Header -->
 
             <!-- ======= Hero Section ======= -->
             <section id="hero" class="d-flex justify-content-center align-items-center">
@@ -461,9 +450,9 @@
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('home/assets/vendor/aos/aos.js'); }}"></script>
-    <script src="{{ asset('home/assets/vendor/bootstrap/js/bootstrap.bundle.min.js'); }}"></script>
     <script src="{{ asset('home/assets/vendor/swiper/swiper-bundle.min.js'); }}"></script>
 
+s
     <!-- Template Main JS File -->
     <script src="{{ asset('home/assets/js/main.js'); }}"></script>
     <!-- Google tag (gtag.js) -->
