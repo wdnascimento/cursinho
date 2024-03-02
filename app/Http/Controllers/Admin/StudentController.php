@@ -452,7 +452,7 @@ class StudentController extends Controller
         }
 
         $writer = new Xlsx($spreadsheet);
-        $filename = 'INSCRICAO_'.$student_id.'.xlsx';
+        $filename = 'INSCRICAO_'.$data['registration_id'].'.xlsx';
 
         // Cabeçalhos para definir o tipo de conteúdo e o nome do arquivo
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
