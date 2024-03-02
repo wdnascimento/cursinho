@@ -451,8 +451,6 @@
     <!-- Vendor JS Files -->
     <script src="{{ asset('home/assets/vendor/aos/aos.js'); }}"></script>
     <script src="{{ asset('home/assets/vendor/swiper/swiper-bundle.min.js'); }}"></script>
-
-s
     <!-- Template Main JS File -->
     <script src="{{ asset('home/assets/js/main.js'); }}"></script>
     <!-- Google tag (gtag.js) -->
