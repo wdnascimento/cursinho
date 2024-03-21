@@ -139,10 +139,6 @@
                                  Ensino Médio em 2024 ou já ter finalizado; e a renda da família do candidato
                                  deve ser de até um salário mínimo por pessoa.
                                 <br>
-                                <br>
-                                <strong>Inscrições são realizadas por aqui até o dia 24/01/2023.</strong>
-                                <br>
-                                <br>
                                 <strong>LEIA ATENTAMENTE O EDITAL ANTES DE PREENCHER A SUA INSCRIÇÃO!</strong>
                                 <br>
                                 Os dados fornecidos não poderão ser alterados após a realização da inscrição.
@@ -152,7 +148,7 @@
                                  não é necessário agendar um horário de atendimento.
                                 Após a realização da inscrição é necessário pagar a taxa de inscrição.
                                 A taxa de inscrição é de <strong> R$ 65,00 (sessenta e cinco reais) </strong>e deve ser paga
-                                até o dia 25/01/2024 (quinta-feira). Sua inscrição será confirmada com o pagamento da taxa.
+                                até o dia informado no ato da Inscrição. Sua inscrição será confirmada com o pagamento da taxa.
                                 O comprovante de pagamento é a confirmação de sua inscrição, por isso, não o perca!
                               </p>
                             </div>
@@ -217,9 +213,8 @@
                                   e o preenchimento da folha de respostas. Os candidatos não poderão deixar o local de prova antes de uma
                                   hora após o início da mesma. Não será permitido o ingresso do candidato no local de prova após ás 18h30min.
                                   <br><br>
-                                  O gabarito da prova será publicado no site www.cursinhosolidario.org.br no dia 06 DE DEZEMBRO DE 2023.
-                                  Até o dia 09/12, na secretaria da Formação Solidária e no site <a href="https://www.cursinhosolidario.org.br">https://www.cursinhosolidario.org.br</a> ,
-                                  será publicado o resultado da Primeira Fase do Processo Seletivo.
+                                  O gabarito da prova será publicado neste site  em data estipulada no Edital de Inscrição.
+                                  E na secretaria da Formação Solidária, será publicado o resultado da Primeira Fase do Processo Seletivo.
                                 </p>
                               </div>
 
@@ -232,8 +227,8 @@
                                 <h5>2ª etapa</h5>
                                 Nessa fase é necessário comprovar as respostas colocadas no questionário e se o candidato:
                                 estudou em escola pública ou em escola particular com bolsa integral; está terminando o
-                                Ensino Médio em 2024 ou já concluiu; possui a renda de até um salário mínimo e meio por pessoa da família.
-                                O horário e o agendamento das entrevistas serão divulgados no site https://www.cursinhosolidario.org.br.
+                                Ensino Médio ou já concluiu; possui a renda de até um salário mínimo e meio por pessoa da família.
+                                O horário e o agendamento das entrevistas serão divulgados neste link <a href="https://www.cursinhosolidario.org.br/ensalamento">Resultados</a>
                                 A avaliação socioeconômica terá caráter eliminatório e ocorrerá por ordem classificatória.
                                  As entrevistas serão feitas somente com o candidato, acompanhantes e responsáveis poderão esperar fora do local de avaliação.
                                 <br><br>
@@ -330,10 +325,9 @@
                                 <p  style="text-align: justify;">
                                   <h5>Como funciona a lista de espera?</h5>
                                     Os candidatos classificados a partir da 541ª (quinquagésima primeira) posição farão parte de LISTA DE ESPERA,
-                                    tendo direito ao preenchimento das vagas que surgirem até o dia 30 DE ABRIL DE 2024.
+                                    tendo direito ao preenchimento das vagas que surgirem até a data estipulada no edital.
                                     <br><br>
-                                    Essa lista será divulgada no site www.cursinhosolidario.org.br. As vagas remanescentes serão
-                                    destinadas a lista de espera, a secretaria do Cursinho Solidário irá entrar em contato pelos telefones cadastrados na inscrição.
+                                    As vagas remanescentes serão destinadas a lista de espera, a secretaria do Cursinho Solidário irá entrar em contato pelos telefones cadastrados na inscrição.
                                 </p>
                                 <h4>Tem mais alguma dúvida? Estamos à disposição para te ajudar!</h4>
                             </div>
