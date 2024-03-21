@@ -34,7 +34,12 @@ class IndexController extends Controller
         $data['ensalaments'] = $this->selective_process->with('ensalaments')->get();
         $data['selective_processes'] = $this->selective_process->current();
 
-        return view('lead', compact('data'));
+        if($data['selective_processes'] == NULL){
+            return view('lead', compact('data'));
+        }else{
+            return redirect()->route('cadastro');
+        }
+
     }
 
 
